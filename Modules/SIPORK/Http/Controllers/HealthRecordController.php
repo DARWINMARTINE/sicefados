@@ -37,9 +37,23 @@ class HealthRecordController extends Controller
      * @param Request $request
      * @return Renderable
      */
+    // public function store(Request $request)
+    // {
+    //     //
+    // }
+
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'pig_id' => 'required|exists:pigs,id_pig',
+            'record_type' => 'required|string|max:20',
+            'description' => 'nullable|string',
+            'application_date' => 'required|date',
+            'cost_id' => 'required|exists:operational_costs,id_cost',
+        ]);
+
+        HealthRecord::create($request->all());
+        return redirect()->route('sipork.admin.sipork.registros_de_salud.index')->with('success', 'Health Record created successfully.');
     }
 
     /**
@@ -49,7 +63,8 @@ class HealthRecordController extends Controller
      */
     public function show($id)
     {
-        return view('sipork::show');
+        $healthRecord = HealthRecord::with('pig', 'cost')->findOrFail($id);
+        return view('sipork::admin.registros_de_salud.show', compact('healthRecord'));
     }
 
     /**
@@ -59,8 +74,18 @@ class HealthRecordController extends Controller
      */
     public function edit($id)
     {
-        return view('sipork::edit');
+        $healthRecord = HealthRecord::with('pig', 'cost')->findOrFail($id);
+        $pigs = Pig::all();
+        $costs = OperationalCost::all();
+        return view('sipork::admin.registros_de_salud.edit', compact('healthRecord', 'pigs', 'costs'));
     }
+
+    // public function edit(HealthRecord $healthRecord)
+    // {
+    //     $pigs = Pig::all();
+    //     $costs = OperationalCost::all();
+    //     return view('sipork::admin.registros_de_salud.edit', compact('healthRecord', 'pigs', 'costs'));
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -70,7 +95,17 @@ class HealthRecordController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'pig_id' => 'required|exists:pigs,id_pig',
+            'record_type' => 'required|string|max:20',
+            'description' => 'nullable|string',
+            'application_date' => 'required|date',
+            'cost_id' => 'required|exists:operational_costs,id_cost',
+        ]);
+
+        $healthRecord = HealthRecord::findOrFail($id);
+        $healthRecord->update($request->all());
+        return redirect()->route('sipork.admin.sipork.registros_de_salud.index')->with('success', 'Health Record updated successfully.');
     }
 
     /**
@@ -80,6 +115,8 @@ class HealthRecordController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $healthRecord = HealthRecord::findOrFail($id);
+        $healthRecord->delete();
+        return redirect()->route('sipork.admin.sipork.registros_de_salud.index')->with('success', 'Health Record deleted successfully.');
     }
 }

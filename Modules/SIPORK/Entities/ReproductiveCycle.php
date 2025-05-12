@@ -25,4 +25,6 @@ class ReproductiveCycle extends Model
     {
         return $this->belongsTo(Pig::class, 'sow_id', 'id_pig');
     }
+
+    
 }

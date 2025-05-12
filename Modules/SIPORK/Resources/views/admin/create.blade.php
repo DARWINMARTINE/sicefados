@@ -170,10 +170,10 @@
                                 <div class="col-md-6 form-group">
                                     <select name="status" id="status" class="form-control @error('status') is-invalid @enderror" required>
                                         <option value="" disabled selected>Seleccionar estado</option>
-                                        <option value="Active" {{ old('status') == 'Active' ? 'selected' : '' }}>Activo</option>
-                                        <option value="Weaned" {{ old('status') == 'Weaned' ? 'selected' : '' }}>Destetado</option>
-                                        <option value="Sold" {{ old('status') == 'Sold' ? 'selected' : '' }}>Vendido</option>
-                                        <option value="Deceased" {{ old('status') == 'Deceased' ? 'selected' : '' }}>Fallecido</option>
+                                        <option value="Active" {{ old('status') == 'Activo' ? 'selected' : '' }}>Activo</option>
+                                        <option value="Weaned" {{ old('status') == 'Destetado' ? 'selected' : '' }}>Destetado</option>
+                                        <option value="Sold" {{ old('status') == 'Vendido' ? 'selected' : '' }}>Vendido</option>
+                                        <option value="Deceased" {{ old('status') == 'Fallecido' ? 'selected' : '' }}>Fallecido</option>
                                     </select>
                                     <label for="status" class="floating-label">Estado <span class="text-danger">*</span></label>
                                     <span class="form-icon"><i class="fas fa-info-circle"></i></span>

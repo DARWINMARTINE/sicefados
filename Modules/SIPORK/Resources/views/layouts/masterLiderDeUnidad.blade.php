@@ -61,7 +61,7 @@
             </ul>
 
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="http://127.0.0.1:8000/sipork/liderDeUnidad/panelLider" class="btn btn-success btn-sm ml-2">Volver</a>
+                <a href="{{ route('sipork.liderDeUnidad.panelLider') }}" class="btn btn-success btn-sm ml-2">Volver</a>
             </li>
 
             <!-- Right navbar links -->

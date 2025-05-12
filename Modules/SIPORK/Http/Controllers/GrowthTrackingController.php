@@ -37,7 +37,15 @@ class GrowthTrackingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $request->validate([
+            'pig_id' => 'required|exists:pigs,id_pig',
+            'measurement_date' => 'required|date',
+            'weight' => 'required|numeric|min:0',
+            'observations' => 'nullable|string',
+        ]);
+
+        GrowthTracking::create($request->all());
+        return redirect()->route('sipork.admin.sipork.seguimiento_del_crecimiento.index')->with('success', 'Growth Tracking created successfully.');
     }
 
     /**
@@ -47,8 +55,15 @@ class GrowthTrackingController extends Controller
      */
     public function show($id)
     {
-        return view('sipork::show');
+        $growthTracking = GrowthTracking::with('pig')->findOrFail($id);
+        return view('sipork::admin.seguimiento_del_crecimiento.show', compact('growthTracking'));
     }
+
+    // public function show(GrowthTracking $growthTracking)
+    // {
+    //     $growthTracking->load('pig');
+    //     return view('sipork::admin.seguimiento_del_crecimiento.show', compact('growthTracking'));
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -57,8 +72,16 @@ class GrowthTrackingController extends Controller
      */
     public function edit($id)
     {
-        return view('sipork::edit');
+        $growthTracking = GrowthTracking::with('pig')->findOrFail($id);
+        $pigs = Pig::all();
+        return view('sipork::admin.seguimiento_del_crecimiento.edit', compact('growthTracking', 'pigs'));
     }
+
+    // public function edit(GrowthTracking $growthTracking)
+    // {
+    //     $pigs = Pig::all();
+    //     return view('sipork::admin.seguimiento_del_crecimiento.edit', compact('growthTracking', 'pigs'));
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -68,8 +91,18 @@ class GrowthTrackingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'pig_id' => 'required|exists:pigs,id_pig',
+            'measurement_date' => 'required|date',
+            'weight' => 'required|numeric|min:0',
+            'observations' => 'nullable|string',
+        ]);
+
+        $growthTracking = GrowthTracking::findOrFail($id);
+        $growthTracking->update($request->all());
+        return redirect()->route('sipork.admin.sipork.seguimiento_del_crecimiento.index')->with('success', 'Growth Tracking updated successfully.');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -78,6 +111,8 @@ class GrowthTrackingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $growthTracking = GrowthTracking::findOrFail($id);
+        $growthTracking->delete();
+        return redirect()->route('sipork.admin.sipork.seguimiento_del_crecimiento.index')->with('success', 'Growth Tracking deleted successfully.');
     }
 }

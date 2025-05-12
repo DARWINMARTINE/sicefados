@@ -20,7 +20,6 @@ class ReproductiveCycleController extends Controller
         return view('sipork::admin.ciclos_reproductivos.index', compact('reproductiveCycles'));
         
     }
-
     /**
      * Show the form for creating a new resource.
      * @return Renderable
@@ -30,7 +29,6 @@ class ReproductiveCycleController extends Controller
         $pigs = Pig::where('gender', 'F')->get(); // Solo cerdas
         return view('sipork::admin.ciclos_reproductivos.create', compact('pigs'));
     }
-
     /**
      * Store a newly created resource in storage.
      * @param Request $request
@@ -50,7 +48,6 @@ class ReproductiveCycleController extends Controller
         ReproductiveCycle::create($request->all());
         return redirect()->route('sipork.admin.sipork.ciclos_reproductivos.index')->with('success', 'Reproductive Cycle created successfully.');
     }
-
     /**
      * Show the specified resource.
      * @param int $id
@@ -58,28 +55,28 @@ class ReproductiveCycleController extends Controller
      */
     public function show($id)
     {
-        return view('sipork::show');
+        $reproductiveCycle = ReproductiveCycle::with('sow')->findOrFail($id);
+        return view('sipork::admin.ciclos_reproductivos.show', compact('reproductiveCycle'));
     }
-
     /**
      * Show the form for editing the specified resource.
      * @param int $id
      * @return Renderable
      */
+
     public function edit($id)
 {
     $reproductiveCycle = ReproductiveCycle::findOrFail($id);
     $pigs = Pig::where('gender', 'F')->get();
     return view('sipork::admin.ciclos_reproductivos.edit', compact('reproductiveCycle', 'pigs'));
 }
-
     /**
      * Update the specified resource in storage.
      * @param Request $request
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, ReproductiveCycle $reproductiveCycle)
+public function update(Request $request, $id)
     {
         $request->validate([
             'sow_id' => 'required|exists:pigs,id_pig',
@@ -90,10 +87,10 @@ class ReproductiveCycleController extends Controller
             'lactation_end_date' => 'nullable|date',
         ]);
 
+        $reproductiveCycle = ReproductiveCycle::findOrFail($id);
         $reproductiveCycle->update($request->all());
         return redirect()->route('sipork.admin.sipork.ciclos_reproductivos.index')->with('success', 'Reproductive Cycle updated successfully.');
     }
-
     /**
      * Remove the specified resource from storage.
      * @param int $id
@@ -101,6 +98,8 @@ class ReproductiveCycleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $reproductiveCycle = ReproductiveCycle::findOrFail($id);
+        $reproductiveCycle->delete();
+        return redirect()->route('sipork.admin.sipork.ciclos_reproductivos.index')->with('success', 'Reproductive Cycle deleted successfully.');
     }
 }

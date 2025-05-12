@@ -196,54 +196,93 @@
                 @endguest
             </div>
         </div>
+        
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Manejo de cerdos -->
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-piggy-bank"></i>
-                                <p>Gestión de Cerdos <i class="right fas fa-angle-left"></i></p>
-                            </a>
-                            <ul class="nav nav-treeview">
+                       <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-pink">
+                            <i class="nav-icon fas fa-piggy-bank"></i>&nbsp;
+                            <p>Gestión de Cerdos <i class="right fas fa-angle-left"></i></p>
+                        </a>
+                        <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                    <a href="{{ route('sipork.admin.sipork.admin.create') }}" class="nav-link">
+                            <a href="{{ route('sipork.admin.sipork.admin.create') }}" class="nav-link">
                                         <i class="fas fa-plus-circle nav-icon"></i>
                                         <p>Añadir cerdo</p>
                                     </a>
-                                </li>
-                                <li class="nav-item">
-                                <a href="{{ route('sipork.admin.sipork.admin.index') }}" class="nav-link">
+                            </li>
+                            <li class="nav-item">
+                            <a href="{{ route('sipork.admin.sipork.admin.index') }}" class="nav-link">
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Listado de Cerdos</p>
                                     </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('sipork.admin.sipork.ciclos_reproductivos.create') }}" class="nav-link">
-                                        <i class="fas fa-sync-alt nav-icon"></i>
-                                        <p>Ciclos Reproductivos</p>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Gestión de la reproducción -->
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-pink">
+                            <i class="fas fa-sync-alt nav-icon"></i>&nbsp;
+                            <p>ciclos reproductivos<i class="right fas fa-angle-left"></i></p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                           <a href="{{ route('sipork.admin.sipork.ciclos_reproductivos.create') }}" class="nav-link">
+                                        <i class="fas fa-plus-circle nav-icon"></i>
+                                        <p>ingreso</p>
                                     </a>
-                                </li>
-                                <li class="nav-item">
-                                <a href="{{ route('sipork.admin.sipork.ciclos_reproductivos.index') }}" class="nav-link">
+                            </li>
+                            <li class="nav-item">
+                            <a href="{{ route('sipork.admin.sipork.ciclos_reproductivos.index') }}" class="nav-link">
                                         <i class="fas fa-list nav-icon"></i>
-                                        <p>Listado/ciclos/reproductivos</p>
+                                        <p>Listado</p>
                                     </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('sipork.admin.sipork.seguimiento_del_crecimiento.create') }}" class="nav-link">
-                                        <i class="fas fa-chart-line nav-icon"></i>
-                                        <p>Seguimiento del crecimiento</p>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- seguimiento de crecimiento -->
+                     <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-pink">
+                            <i class="fas fa-chart-line nav-icon"></i></i>&nbsp;
+                            <p>Seg. Crecimiento<i class="right fas fa-angle-left"></i></p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                            <a href="{{ route('sipork.admin.sipork.seguimiento_del_crecimiento.create') }}" class="nav-link">
+                                        <i class="fas fa-plus-circle nav-icon"></i>
+                                        <p>Ingreso</p>
                                     </a>
-                                </li>
+                            </li>
+                            <li class="nav-item">
+                            <a href="{{ route('sipork.admin.sipork.seguimiento_del_crecimiento.index') }}" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Listado</p>
+                                    </a>
+                            </li>
+                        </ul>
+                    </li>
+                        <!-- Gestión de la salud -->
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link text-pink">
+                                <i class="fas fa-stethoscope nav-icon"></i>&nbsp;
+                                <p>Gestión de la salud<i class="right fas fa-angle-left"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('sipork.admin.sipork.registros_de_salud.create') }}" class="nav-link">
-                                        <i class="fas fa-notes-medical nav-icon"></i>
-                                        <p>Registros de Salud</p>
+                                        <i class="fas fa-plus-circle nav-icon"></i>
+                                        <p>Ingreso</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('sipork.admin.sipork.registros_de_salud.index') }}" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Listado</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-
                         <!-- Gestión de lotes -->
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
@@ -357,7 +396,7 @@
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-leaf"></i>
                                 <i class="right fas fa-angle-left"></i>
-                                <p>Ambiente/Bioseguridad </p>
+                                <p>Ambiente-Bioseg.</p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
@@ -374,13 +413,26 @@
                                 </li>
                             </ul>
                         </li>
-
                         <!-- Costos operativos -->
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link text-pink">
                                 <i class="nav-icon fas fa-dollar-sign"></i>
-                                <p>Costos operativos</p>
+                                <p>Costos operativos<i class="right fas fa-angle-left"></i></p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('sipork.admin.sipork.costos_operativos.create') }}" class="nav-link">
+                                        <i class="fas fa-plus-circle nav-icon"></i>
+                                        <p>Ingreso de costos</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('sipork.admin.sipork.costos_operativos.index') }}" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Listado de costos</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </nav>

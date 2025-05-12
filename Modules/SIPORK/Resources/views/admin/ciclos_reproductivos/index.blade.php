@@ -2,6 +2,9 @@
 
 @section('content')
 <br><br><br>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<!-- link de estilos que nos dio ruben -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-...hash..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
     .form-card {
         background: #fefae0; /* Light beige, farm-inspired */
@@ -70,7 +73,7 @@
                                     <td>{{ $cycle->dead_piglets ?? 'N/A' }}</td>
                                     <td>{{ $cycle->lactation_end_date ?? 'N/A' }}</td>
                                     <td>
-                                    <a href="" class="text-info" 
+                                    <a href="{{ route('sipork.admin.sipork.ciclos_reproductivos.show', $cycle->id_cycle) }}" class="text-info" 
                                                         style="font-size: 1.5rem; transition: transform 0.3s ease, color 0.3s ease; color: #17a2b8;" 
                                                         onmouseover="this.style.transform='scale(1.2)'; this.style.color='darkcyan';" 
                                                         onmouseout="this.style.transform='scale(1)'; this.style.color='#17a2b8';">
@@ -82,7 +85,7 @@
                                                         onmouseout="this.style.transform='scale(1)'; this.style.color='#ffc107';">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
-                                                    <form action="" method="POST" style="display:inline;" onsubmit="return confirmDelete(this);">
+                                                    <form action="{{ route('sipork.admin.sipork.ciclos_reproductivos.destroy', $cycle->id_cycle) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete(this);">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="button" style="border: none; background: none; font-size: 1.5rem; transition: transform 0.3s ease, color 0.3s ease; color: red;" 
@@ -92,6 +95,31 @@
                                                             <i class="fas fa-trash-alt"></i>
                                                         </button>
                                                     </form>
+
+                                                    <script>
+                                                        function confirmDelete(form) {
+                                                            Swal.fire({
+                                                                title: '¿Estás seguro?',
+                                                                text: "Esta acción no se puede deshacer.",
+                                                                imageUrl: "{{ asset('images/advertencia.jpg') }}",
+                                                                imageWidth: 160, // Increased width
+                                                                imageHeight: 150, // Increased height
+                                                                customClass: {
+                                                                image: 'swal-image-custom' // Add a custom class for styling
+                                                                },
+                                                                showCancelButton: true,
+                                                                confirmButtonColor: '#d33',
+                                                                cancelButtonColor: '#3085d6',
+                                                                confirmButtonText: 'Sí, eliminar',
+                                                                cancelButtonText: 'Cancelar'
+                                                            }).then((result) => {
+                                                                if (result.isConfirmed) {
+                                                                    form.submit();
+                                                                }
+                                                            });
+                                                            return false;
+                                                        }
+                                                    </script>
                                     </td>
                                 </tr>
                             @endforeach

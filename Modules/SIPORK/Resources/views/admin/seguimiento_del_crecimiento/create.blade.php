@@ -107,7 +107,7 @@
                     Crear Seguimiento del Crecimiento
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ route('sipork.admin.sipork.seguimiento_del_crecimiento.store') }}">
                         @csrf
 
                         <!-- Pig -->

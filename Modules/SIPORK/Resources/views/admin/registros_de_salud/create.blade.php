@@ -9,7 +9,7 @@
                 <div class="card-header">Crear registro de salud</div>
 
                 <div class="card-body">
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ route('sipork.admin.sipork.registros_de_salud.store') }}">
                         @csrf
 
                         <div class="form-group">
@@ -67,7 +67,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary">Guardar</button>
-                        <a href="" class="btn btn-secondary">Cancelar</a>
+                        <a href="{{ route('sipork.admin.sipork.registros_de_salud.index') }}" class="btn btn-secondary">Cancelar</a>
                     </form>
                 </div>
             </div>
