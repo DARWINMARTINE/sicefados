@@ -9,5 +9,8 @@
     ],
     "aliases": {},
     "files": [],
-    "requires": []
+    "requires": [],
+    "dependencies": {
+        "SIGAC": "file:"
+    }
 }

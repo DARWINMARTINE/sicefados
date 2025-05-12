@@ -83,5 +83,8 @@
     "zoom"
   ],
   "author": "Dmytro Semenov (https://dimsemenov.com)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "photoswipe": "file:"
+  }
 }
