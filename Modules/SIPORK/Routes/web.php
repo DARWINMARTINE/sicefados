@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use Modules\SIPORK\Http\Controllers\PigLotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,6 @@ Route::middleware(['lang'])->group(function () {
         Route::get('/index', 'SIPORKController@index')->name('cefa.sipork.index');
         Route::get('/admin/welcome', 'SIPORKController@admin')->name('sipork.admin.welcome');
         Route::get('/modules', 'SIPORKController@modules')->name('sipork.modules');
-
         Route::get('/liderDeUnidad/panelLider', 'SIPORKController@liderDeUnidad')->name('sipork.liderDeUnidad.panelLider');
         Route::get('/aprendiz/panelAprendiz', 'SIPORKController@aprendiz')->name('sipork.aprendiz.panelAprendiz');
         
@@ -70,8 +70,32 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/costos_operativos/{id}', 'OperationalCostController@update')->name('sipork.admin.sipork.costos_operativos.update');
             Route::get('/costos_operativos/{id}', 'OperationalCostController@show')->name('sipork.admin.sipork.costos_operativos.show');
             Route::delete('/costos_operativos/{id}', 'OperationalCostController@destroy')->name('sipork.admin.sipork.costos_operativos.destroy');
-
-
+            // rutas para los lotes
+            Route::get('/lotes', 'LotController@index')->name('sipork.admin.sipork.lotes.index');
+            Route::get('/lotes/create', 'LotController@create')->name('sipork.admin.sipork.lotes.create');
+            Route::post('/lotes/store', 'LotController@store')->name('sipork.admin.sipork.lotes.store');
+            Route::get('/lotes/{id}/edit', 'LotController@edit')->name('sipork.admin.sipork.lotes.edit');
+            Route::put('/lotes/{id}', 'LotController@update')->name('sipork.admin.sipork.lotes.update');
+            Route::get('/lotes/{id}', 'LotController@show')->name('sipork.admin.sipork.lotes.show');
+            Route::delete('/lotes/{id}', 'LotController@destroy')->name('sipork.admin.sipork.lotes.destroy');
+            // rutas para asignar cerdos a lotes
+            Route::get('/asignar_cerdos_a_lotes', 'PigLotController@index')->name('sipork.admin.sipork.asignar_cerdos_a_lotes.index');
+            Route::get('/asignar_cerdos_a_lotes/create', 'PigLotController@create')->name('sipork.admin.sipork.asignar_cerdos_a_lotes.create');
+            Route::post('/asignar_cerdos_a_lotes/store', 'PigLotController@store')->name('sipork.admin.sipork.asignar_cerdos_a_lotes.store');
+            Route::get('/asignar_cerdos_a_lotes/{id}/edit/{otherId}', 'PigLotController@edit')->name('sipork.admin.sipork.asignar_cerdos_a_lotes.edit');
+            Route::put('/asignar_cerdos_a_lotes/{id}/{otherId}', 'PigLotController@update')->name('sipork.admin.sipork.asignar_cerdos_a_lotes.update');
+            Route::get('/asignar_cerdos_a_lotes/{id}/{otherId}', 'PigLotController@show')->name('sipork.admin.sipork.asignar_cerdos_a_lotes.show');
+            Route::delete('/asignar_cerdos_a_lotes/{id}/{otherId}', 'PigLotController@destroy')->name('sipork.admin.sipork.asignar_cerdos_a_lotes.destroy');
+            
+            // rutas para los brotes sanitarios
+            Route::get('/brotes_sanitarios', 'SanitaryOutbreakController@index')->name('sipork.admin.sipork.brotes_sanitarios.index');
+            Route::get('/brotes_sanitarios/create', 'SanitaryOutbreakController@create')->name('sipork.admin.sipork.brotes_sanitarios.create');
+            Route::post('/brotes_sanitarios/store', 'SanitaryOutbreakController@store')->name('sipork.admin.sipork.brotes_sanitarios.store');
+            Route::get('/brotes_sanitarios/{id}/edit', 'SanitaryOutbreakController@edit')->name('sipork.admin.sipork.brotes_sanitarios.edit');
+            Route::put('/brotes_sanitarios/{id}', 'SanitaryOutbreakController@update')->name('sipork.admin.sipork.brotes_sanitarios.update');
+            Route::get('/brotes_sanitarios/{id}', 'SanitaryOutbreakController@show')->name('sipork.admin.sipork.brotes_sanitarios.show');
+            Route::delete('/brotes_sanitarios/{id}', 'SanitaryOutbreakController@destroy')->name('sipork.admin.sipork.brotes_sanitarios.destroy');
+            
             // rutas para los lideres de unidad
             Route::get('/liderDeUnidad', 'PigController@index')->name('sipork.liderDeUnidad.sipork.liderDeUnidad.index');
             Route::get('/liderDeUnidad/create', 'PigController@create')->name('sipork.liderDeUnidad.sipork.liderDeUnidad.create');

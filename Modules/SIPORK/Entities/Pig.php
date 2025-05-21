@@ -39,7 +39,8 @@ class Pig extends Model
     public function lots()
     {
         return $this->belongsToMany(Lot::class, 'pigs_lots', 'pig_id', 'lot_id')
-                    ->withPivot('entry_date', 'exit_date');
+                    ->withPivot('entry_date', 'exit_date')
+                    ->withTimestamps();
     }
 
     public function feeding()

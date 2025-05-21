@@ -126,21 +126,21 @@
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
                     @auth
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-user-circle"></i> {{ Auth::user()->nickname }}
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Cerrar Sesión
-                                </a>
-                            </div>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i> {{ Auth::user()->nickname }}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Cerrar Sesión
+                            </a>
                         </div>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
+                    </div>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                     @endauth
                 </ul>
         </nav>
@@ -190,41 +190,41 @@
                     <div class="row col-md-12">
                         <div class="image mt-2 mb-2">
                             @if (isset(Auth::user()->person->avatar))
-                                <img src="{{ asset('storage/' . Auth::user()->person->avatar) }}"
-                                    class="img-circle elevation-2" alt="User Image">
+                            <img src="{{ asset('storage/' . Auth::user()->person->avatar) }}"
+                                class="img-circle elevation-2" alt="User Image">
                             @else
-                                <img src="{{ asset('modules/sica/images/blanco.png') }}"
-                                    class="img-circle elevation-2" alt="User Image">
+                            <img src="{{ asset('modules/sica/images/blanco.png') }}"
+                                class="img-circle elevation-2" alt="User Image">
                             @endif
                         </div>
                         @guest
-                            <div class="col info info-user">
-                                <div>{{ trans('senaempresa::menu.Welcome') }}</div>
-                                <div><a href="{{ route('login', ['redirect' => url()->current()]) }}"
-                                        class="d-block">{{ trans('Auth.Login') }}</a></div>
-                            </div>
-                            <div class="col info float-right mt-2" data-toggle="tooltip" data-placement="right"
-                                title="{{ trans('Auth.Login') }}"><a
-                                    href="{{ route('login', ['redirect' => url()->current()]) }}" class="d-block"><i
-                                        class="fas fa-sign-in-alt"></i></a>
-                            </div>
+                        <div class="col info info-user">
+                            <div>{{ trans('senaempresa::menu.Welcome') }}</div>
+                            <div><a href="{{ route('login', ['redirect' => url()->current()]) }}"
+                                    class="d-block">{{ trans('Auth.Login') }}</a></div>
+                        </div>
+                        <div class="col info float-right mt-2" data-toggle="tooltip" data-placement="right"
+                            title="{{ trans('Auth.Login') }}"><a
+                                href="{{ route('login', ['redirect' => url()->current()]) }}" class="d-block"><i
+                                    class="fas fa-sign-in-alt"></i></a>
+                        </div>
                         @else
-                            <div class="col info info-user">
-                                <div data-toggle="tooltip" data-placement="top"
-                                    title="{{ Auth::user()->person->full_name }}">
-                                    {{ Auth::user()->nickname }}
-                                </div>
-                                <div class="small"><em> {{ Auth::user()->roles[0]->name }}</em></div>
+                        <div class="col info info-user">
+                            <div data-toggle="tooltip" data-placement="top"
+                                title="{{ Auth::user()->person->full_name }}">
+                                {{ Auth::user()->nickname }}
                             </div>
-                            <div class="col info float-right mt-2" data-toggle="tooltip" data-placement="right"
-                                title="{{ trans('Auth.Logout') }}"><a href="{{ route('logout') }}" class="d-block"
-                                    onclick="event.preventDefault();
+                            <div class="small"><em> {{ Auth::user()->roles[0]->name }}</em></div>
+                        </div>
+                        <div class="col info float-right mt-2" data-toggle="tooltip" data-placement="right"
+                            title="{{ trans('Auth.Logout') }}"><a href="{{ route('logout') }}" class="d-block"
+                                onclick="event.preventDefault();
               document.getElementById('logout-form').submit();"><i
-                                        class="fas fa-sign-out-alt"></i></a>
-                            </div>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                                    class="fas fa-sign-out-alt"></i></a>
+                        </div>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                         @endguest
                     </div>
                 </div>
@@ -324,37 +324,74 @@
                         </li>
                         <!-- Gestión de lotes -->
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-layer-group"></i>
-                                <p>Lotes <i class="right fas fa-angle-left"></i></p>
+                            <a href="#" class="nav-link text-pink">
+                                <i class="nav-icon fas fa-layer-group"></i>&nbsp;
+                                <p>Lotes<i class="right fas fa-angle-left"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Listado de Lotes</p>
+                                    <a href="{{ route('sipork.admin.sipork.lotes.create') }}"
+                                        class="nav-link">
+                                        <i class="fas fa-plus-circle nav-icon"></i>
+                                        <p>Ingreso</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Agregar lote</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Asignar cerdos a lotes</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Brotes Sanitarios</p>
+                                    <a href="{{ route('sipork.admin.sipork.lotes.index') }}"
+                                        class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Listado</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+                        <!-- Asignación de cerdos a lotes -->
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link text-pink">
+                                <i class="nav-icon fas fa-exchange-alt"></i>&nbsp;
+                                <p>Asignar cerdos a lotes<i class="right fas fa-angle-left"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('sipork.admin.sipork.asignar_cerdos_a_lotes.create') }}"
+                                        class="nav-link">
+                                        <i class="fas fa-plus-circle nav-icon"></i>
+                                        <p>Ingreso</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('sipork.admin.sipork.asignar_cerdos_a_lotes.index') }}"
+                                        class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Listado</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                                <!-- brotes sanitarios -->
+                                <li class="nav-item has-treeview">
+                                    <a href="#" class="nav-link text-pink">
+                                        <i class="fas fa-biohazard nav-icon"></i>&nbsp;
+                                        <p>Brotes Sanitarios<i class="right fas fa-angle-left"></i></p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="{{ route('sipork.admin.sipork.brotes_sanitarios.create') }}"
+                                                class="nav-link">
+                                                <i class="fas fa-plus-circle nav-icon"></i>
+                                                <p>Ingreso</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('sipork.admin.sipork.brotes_sanitarios.index') }}"
+                                                class="nav-link">
+                                                <i class="fas fa-list nav-icon"></i>
+                                                <p>Listado</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                           
 
                         <!-- Gestión de la alimentación -->
                         <li class="nav-item has-treeview">

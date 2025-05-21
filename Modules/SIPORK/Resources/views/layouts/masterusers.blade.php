@@ -219,7 +219,5 @@
       © 2025 Centro de Formación Agroindustrial La Angostura – SENA. Todos los derechos reservados. version:3.2.0
     </div>
   </footer>
-
-
 </body>
 </html>
