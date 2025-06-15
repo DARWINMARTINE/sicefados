@@ -1,7 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Modules\SIPORK\Http\Controllers\PigLotController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,8 +11,6 @@ use Modules\SIPORK\Http\Controllers\PigLotController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
 Route::middleware(['lang'])->group(function () {
     Route::prefix('sipork')->group(function () {
         Route::get('/index', 'SIPORKController@index')->name('cefa.sipork.index');
@@ -21,15 +18,12 @@ Route::middleware(['lang'])->group(function () {
         Route::get('/modules', 'SIPORKController@modules')->name('sipork.modules');
         Route::get('/liderDeUnidad/panelLider', 'SIPORKController@liderDeUnidad')->name('sipork.liderDeUnidad.panelLider');
         Route::get('/aprendiz/panelAprendiz', 'SIPORKController@aprendiz')->name('sipork.aprendiz.panelAprendiz');
-        
         });
-    
     });
 
 // rutas para las funciones de los cerdos
 Route::middleware(['auth'])->group(function () {
         Route::prefix('sipork')->group(function () {
-
             // rutas para el administrador
             Route::get('/admin', 'PigController@index')->name('sipork.admin.sipork.admin.index');
             Route::get('/admin/create', 'PigController@create')->name('sipork.admin.sipork.admin.create');
@@ -86,7 +80,6 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/asignar_cerdos_a_lotes/{id}/{otherId}', 'PigLotController@update')->name('sipork.admin.sipork.asignar_cerdos_a_lotes.update');
             Route::get('/asignar_cerdos_a_lotes/{id}/{otherId}', 'PigLotController@show')->name('sipork.admin.sipork.asignar_cerdos_a_lotes.show');
             Route::delete('/asignar_cerdos_a_lotes/{id}/{otherId}', 'PigLotController@destroy')->name('sipork.admin.sipork.asignar_cerdos_a_lotes.destroy');
-            
             // rutas para los brotes sanitarios
             Route::get('/brotes_sanitarios', 'SanitaryOutbreakController@index')->name('sipork.admin.sipork.brotes_sanitarios.index');
             Route::get('/brotes_sanitarios/create', 'SanitaryOutbreakController@create')->name('sipork.admin.sipork.brotes_sanitarios.create');
@@ -95,6 +88,63 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/brotes_sanitarios/{id}', 'SanitaryOutbreakController@update')->name('sipork.admin.sipork.brotes_sanitarios.update');
             Route::get('/brotes_sanitarios/{id}', 'SanitaryOutbreakController@show')->name('sipork.admin.sipork.brotes_sanitarios.show');
             Route::delete('/brotes_sanitarios/{id}', 'SanitaryOutbreakController@destroy')->name('sipork.admin.sipork.brotes_sanitarios.destroy');
+            // rutas para las dietas
+            Route::get('/dietas', 'DietController@index')->name('sipork.admin.sipork.dietas.index');
+            Route::get('/dietas/create', 'DietController@create')->name('sipork.admin.sipork.dietas.create');
+            Route::post('/dietas/store', 'DietController@store')->name('sipork.admin.sipork.dietas.store');
+            Route::get('/dietas/{id}/edit', 'DietController@edit')->name('sipork.admin.sipork.dietas.edit');
+            Route::put('/dietas/{id}', 'DietController@update')->name('sipork.admin.sipork.dietas.update');
+            Route::get('/dietas/{id}', 'DietController@show')->name('sipork.admin.sipork.dietas.show');
+            Route::delete('/dietas/{id}', 'DietController@destroy')->name('sipork.admin.sipork.dietas.destroy');
+            // rutas para alimentación
+            Route::get('/alimentacion', 'FeedingController@index')->name('sipork.admin.sipork.alimentacion.index');
+            Route::get('/alimentacion/create', 'FeedingController@create')->name('sipork.admin.sipork.alimentacion.create');
+            Route::post('/alimentacion/store', 'FeedingController@store')->name('sipork.admin.sipork.alimentacion.store');
+            Route::get('/alimentacion/{id}/edit', 'FeedingController@edit')->name('sipork.admin.sipork.alimentacion.edit');
+            Route::put('/alimentacion/{id}', 'FeedingController@update')->name('sipork.admin.sipork.alimentacion.update');
+            Route::get('/alimentacion/{id}', 'FeedingController@show')->name('sipork.admin.sipork.alimentacion.show');
+            Route::delete('/alimentacion/{id}', 'FeedingController@destroy')->name('sipork.admin.sipork.alimentacion.destroy');
+            // rutas para las bodegas
+            Route::get('/bodegas', 'WarehouseSiporkController@index')->name('sipork.admin.sipork.bodegas.index');
+            Route::get('/bodegas/create', 'WarehouseSiporkController@create')->name('sipork.admin.sipork.bodegas.create');
+            Route::post('/bodegas/store', 'WarehouseSiporkController@store')->name('sipork.admin.sipork.bodegas.store');
+            Route::get('/bodegas/{id}/edit', 'WarehouseSiporkController@edit')->name('sipork.admin.sipork.bodegas.edit');
+            Route::put('/bodegas/{id}', 'WarehouseSiporkController@update')->name('sipork.admin.sipork.bodegas.update');
+            Route::get('/bodegas/{id}', 'WarehouseSiporkController@show')->name('sipork.admin.sipork.bodegas.show');
+            Route::delete('/bodegas/{id}', 'WarehouseSiporkController@destroy')->name('sipork.admin.sipork.bodegas.destroy');
+            // rutas para los insumos alimenticios
+            Route::get('/insumos_alimenticios', 'SupplyFeedingController@index')->name('sipork.admin.sipork.insumos_alimenticios.index');
+            Route::get('/insumos_alimenticios/create', 'SupplyFeedingController@create')->name('sipork.admin.sipork.insumos_alimenticios.create');
+            Route::post('/insumos_alimenticios/store', 'SupplyFeedingController@store')->name('sipork.admin.sipork.insumos_alimenticios.store');
+            Route::get('/insumos_alimenticios/{id}/edit', 'SupplyFeedingController@edit')->name('sipork.admin.sipork.insumos_alimenticios.edit');
+            Route::put('/insumos_alimenticios/{id}', 'SupplyFeedingController@update')->name('sipork.admin.sipork.insumos_alimenticios.update');
+            Route::get('/insumos_alimenticios/{id}', 'SupplyFeedingController@show')->name('sipork.admin.sipork.insumos_alimenticios.show');
+            Route::delete('/insumos_alimenticios/{id}', 'SupplyFeedingController@destroy')->name('sipork.admin.sipork.insumos_alimenticios.destroy');
+            // rutas para los suministros
+            Route::get('/suministros', 'SupplySiporkController@index')->name('sipork.admin.sipork.suministros.index');
+            Route::get('/suministros/create', 'SupplySiporkController@create')->name('sipork.admin.sipork.suministros.create');
+            Route::post('/suministros/store', 'SupplySiporkController@store')->name('sipork.admin.sipork.suministros.store');
+            Route::get('/suministros/{id}/edit', 'SupplySiporkController@edit')->name('sipork.admin.sipork.suministros.edit');
+            Route::put('/suministros/{id}', 'SupplySiporkController@update')->name('sipork.admin.sipork.suministros.update');
+            Route::get('/suministros/{id}', 'SupplySiporkController@show')->name('sipork.admin.sipork.suministros.show');
+            Route::delete('/suministros/{id}', 'SupplySiporkController@destroy')->name('sipork.admin.sipork.suministros.destroy');
+            // rutas para las herramientas
+            Route::get('/herramientas', 'ToolSiporkController@index')->name('sipork.admin.sipork.herramientas.index');
+            Route::get('/herramientas/create', 'ToolSiporkController@create')->name('sipork.admin.sipork.herramientas.create');
+            Route::post('/herramientas/store', 'ToolSiporkController@store')->name('sipork.admin.sipork.herramientas.store');
+            Route::get('/herramientas/{id}/edit', 'ToolSiporkController@edit')->name('sipork.admin.sipork.herramientas.edit');
+            Route::put('/herramientas/{id}', 'ToolSiporkController@update')->name('sipork.admin.sipork.herramientas.update');
+            Route::get('/herramientas/{id}', 'ToolSiporkController@show')->name('sipork.admin.sipork.herramientas.show');
+            Route::delete('/herramientas/{id}', 'ToolSiporkController@destroy')->name('sipork.admin.sipork.herramientas.destroy');
+            // rutas para el uso de herramientas
+            Route::get('/uso_de_herramientas', 'ToolPigController@index')->name('sipork.admin.sipork.uso_de_herramientas.index');
+            Route::get('/uso_de_herramientas/create', 'ToolPigController@create')->name('sipork.admin.sipork.uso_de_herramientas.create');
+            Route::post('/uso_de_herramientas/store', 'ToolPigController@store')->name('sipork.admin.sipork.uso_de_herramientas.store');
+            Route::get('/uso_de_herramientas/{id}/edit', 'ToolPigController@edit')->name('sipork.admin.sipork.uso_de_herramientas.edit');
+            Route::put('/uso_de_herramientas/{id}', 'ToolPigController@update')->name('sipork.admin.sipork.uso_de_herramientas.update');
+            Route::get('/uso_de_herramientas/{id}', 'ToolPigController@show')->name('sipork.admin.sipork.uso_de_herramientas.show');
+            Route::delete('/uso_de_herramientas/{id}', 'ToolPigController@destroy')->name('sipork.admin.sipork.uso_de_herramientas.destroy');
+            
             
             // rutas para los lideres de unidad
             Route::get('/liderDeUnidad', 'PigController@index')->name('sipork.liderDeUnidad.sipork.liderDeUnidad.index');

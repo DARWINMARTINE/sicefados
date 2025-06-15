@@ -78,7 +78,7 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="http://127.0.0.1:8000" class="nav-link">Inicio</a>
+                    <a href="http://127.0.0.1:8000/sipork/index" class="nav-link">Inicio</a>
                 </li>
             </ul>
 
@@ -368,22 +368,91 @@
                                 </li>
                             </ul>
                         </li>
-                                <!-- brotes sanitarios -->
+                        <!-- brotes sanitarios -->
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link text-pink">
+                                <i class="fas fa-biohazard nav-icon"></i>&nbsp;
+                                <p>Brotes Sanitarios<i class="right fas fa-angle-left"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('sipork.admin.sipork.brotes_sanitarios.create') }}"
+                                        class="nav-link">
+                                        <i class="fas fa-plus-circle nav-icon"></i>
+                                        <p>Ingreso</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('sipork.admin.sipork.brotes_sanitarios.index') }}"
+                                        class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Listado</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <!-- Gestión de la alimentación -->
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link text-pink">
+                                <i class="nav-icon fas fa-utensils"></i>&nbsp;
+                                <p>Alimentacion<i class="right fas fa-angle-left"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('sipork.admin.sipork.alimentacion.create') }}"
+                                        class="nav-link">
+                                        <i class="fas fa-plus-circle nav-icon"></i>
+                                        <p>Ingreso</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('sipork.admin.sipork.alimentacion.index') }}"
+                                        class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Listado</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- dietas -->
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link text-pink">
+                                <i class="fas fa-apple-alt nav-icon"></i>&nbsp;
+                                <p>Dietas<i class="right fas fa-angle-left"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('sipork.admin.sipork.dietas.create') }}"
+                                        class="nav-link">
+                                        <i class="fas fa-plus-circle nav-icon"></i>
+                                        <p>Ingreso</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('sipork.admin.sipork.dietas.index') }}"
+                                        class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Listado</p>
+                                    </a>
+                                </li>
+                                <!-- insumos alimenticios -->
                                 <li class="nav-item has-treeview">
                                     <a href="#" class="nav-link text-pink">
-                                        <i class="fas fa-biohazard nav-icon"></i>&nbsp;
-                                        <p>Brotes Sanitarios<i class="right fas fa-angle-left"></i></p>
+                                        <i class="fas fa-carrot nav-icon"></i>&nbsp;
+                                        <p>Insumos alimenticios<i class="right fas fa-angle-left"></i></p>
                                     </a>
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <a href="{{ route('sipork.admin.sipork.brotes_sanitarios.create') }}"
+                                            <a href="{{ route('sipork.admin.sipork.insumos_alimenticios.create') }}"
                                                 class="nav-link">
                                                 <i class="fas fa-plus-circle nav-icon"></i>
                                                 <p>Ingreso</p>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ route('sipork.admin.sipork.brotes_sanitarios.index') }}"
+                                            <a href="{{ route('sipork.admin.sipork.insumos_alimenticios.index') }}"
                                                 class="nav-link">
                                                 <i class="fas fa-list nav-icon"></i>
                                                 <p>Listado</p>
@@ -391,78 +460,106 @@
                                         </li>
                                     </ul>
                                 </li>
-                           
-
-                        <!-- Gestión de la alimentación -->
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-utensils"></i>
-                                <p>Alimentación <i class="right fas fa-angle-left"></i></p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dietas</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Registros de alimentación</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Suministros en la alimentación</p>
-                                    </a>
-                                </li>
                             </ul>
-                        </li>
 
-                        <!--Gestión de recursos -->
+                            <!--Gestión de recursos -->
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link text-pink">
                                 <i class="nav-icon fas fa-tools"></i>
                                 <p>Recursos <i class="right fas fa-angle-left"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Añadir suministro</p>
+                                <li class="nav-item has-treeview">
+                                    <a href="#" class="nav-link text-pink">
+                                        <i class="fas fa-boxes nav-icon"></i>&nbsp;
+                                        <p>Insumos<i class="right fas fa-angle-left"></i></p>
                                     </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="{{ route('sipork.admin.sipork.suministros.create') }}"
+                                                class="nav-link">
+                                                <i class="fas fa-plus-circle nav-icon"></i>
+                                                <p>Ingreso</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('sipork.admin.sipork.suministros.index') }}"
+                                                class="nav-link">
+                                                <i class="fas fa-list nav-icon"></i>
+                                                <p>Listado</p>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lista de suministros</p>
+                                <!-- herramientas -->
+                                <li class="nav-item has-treeview">
+                                    <a href="#" class="nav-link text-pink">
+                                        <i class="fas fa-tools nav-icon"></i>&nbsp;
+                                        <p>Herramientas<i class="right fas fa-angle-left"></i></p>
                                     </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="{{ route('sipork.admin.sipork.herramientas.create') }}"
+                                                class="nav-link">
+                                                <i class="fas fa-plus-circle nav-icon"></i>
+                                                <p>Ingreso</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('sipork.admin.sipork.herramientas.index') }}"
+                                                class="nav-link">
+                                                <i class="fas fa-list nav-icon"></i>
+                                                <p>Listado</p>
+                                            </a>
+                                        </li>
+                                        <!-- Uso de herramientas -->
+                                        <li class="nav-item has-treeview">
+                                            <a href="#" class="nav-link text-pink">
+                                                <i class="fas fa-hammer nav-icon"></i>&nbsp;
+                                                <p>Uso de herramientas<i class="right fas fa-angle-left"></i></p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">
+                                                    <a href="{{ route('sipork.admin.sipork.uso_de_herramientas.create') }}"
+                                                        class="nav-link">
+                                                        <i class="fas fa-plus-circle nav-icon"></i>
+                                                        <p>Ingreso</p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="{{ route('sipork.admin.sipork.uso_de_herramientas.index') }}"
+                                                        class="nav-link">
+                                                        <i class="fas fa-list nav-icon"></i>
+                                                        <p>Listado</p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Agregar herramienta</p>
+                                <!-- uso de herramientas -->
+                                <!-- bodegas -->
+                                <li class="nav-item has-treeview">
+                                    <a href="#" class="nav-link text-pink">
+                                        <i class="fas fa-warehouse nav-icon"></i>&nbsp;
+                                        <p>Bodegas<i class="right fas fa-angle-left"></i></p>
                                     </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lista de Herramientas</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Almacenes</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Uso de herramientas</p>
-                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="{{ route('sipork.admin.sipork.bodegas.create') }}"
+                                                class="nav-link">
+                                                <i class="fas fa-plus-circle nav-icon"></i>
+                                                <p>Ingreso</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('sipork.admin.sipork.bodegas.index') }}"
+                                                class="nav-link">
+                                                <i class="fas fa-list nav-icon"></i>
+                                                <p>Listado</p>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
