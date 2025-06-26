@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     Growth Tracking
-                    <a href="" class="btn btn-primary btn-sm float-right">Create New</a>
+                    <a href="{{ route('sipork.admin.sipork.seguimiento_del_crecimiento.create') }}" class="btn btn-primary btn-sm float-right">Create New</a>
                 </div>
 
                 <div class="card-body">

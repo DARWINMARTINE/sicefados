@@ -111,7 +111,7 @@
                     <div class="card-header">
                         <h3 class="card-title mb-0">Formulario de registro de cerdos</h3>
                     </div>
-                    <form action="{{ route('sipork.admin.sipork.admin.store') }}" method="POST">
+                    <form action="{{ route('sipork.admin.sipork.gestion_de_cerdos.store') }}" method="POST">
                         @csrf
                         <div class="card-body">
                             <div class="row">

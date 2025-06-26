@@ -16,7 +16,13 @@ class PigController extends Controller
     public function index()
     {
         $pigs = pig::all(); // Fetch all pigs from the database
-        return view('sipork::admin.index', ['pigs' => $pigs]);
+        return view('sipork::admin.gestion_de_cerdos.index', ['pigs' => $pigs]);
+    }
+
+    public function indexlider()
+    {
+        $pigs = pig::all(); // Fetch all pigs from the database
+        return view('sipork::liderDeUnidad.gestion_de_cerdos.index', ['pigs' => $pigs]);
     }
 
     /**
@@ -26,9 +32,13 @@ class PigController extends Controller
     public function create()
     {
         $mothers = []; // Fetch or define $mothers data, e.g., from a model
-        return view('sipork::admin.create', ['mothers' => $mothers]);
-        
+        return view('sipork::admin.gestion_de_cerdos.create', ['mothers' => $mothers]);
     }
+
+     public function createlider(){
+        $mothers = []; // Fetch or define $mothers data, e.g., from a model
+        return view('sipork::liderDeUnidad.gestion_de_cerdos.create', ['mothers' => $mothers]);
+     }
     
 
     /**
@@ -50,7 +60,24 @@ class PigController extends Controller
 
         Pig::create($validated);
 
-        return redirect()->route('sipork.admin.sipork.admin.index')->with('success', 'Pig registered successfully.');
+        return redirect()->route('sipork.admin.sipork.gestion_de_cerdos.index')->with('success', 'Pig registered successfully.');
+    }
+
+    public function storelider(Request $request)
+    {
+        $validated = $request->validate([
+            'birth_date' => 'required|date',
+            'initial_weight' => 'required|numeric|min:0',
+            'gender' => 'required|in:M,F',
+            'status' => 'required|in:Active,Weaned,Sold,Deceased',
+            'breed' => 'required|in:Pietrain,Duroc,Landrace,Hampshire,Large-White',
+            'weaning_date' => 'nullable|date|after_or_equal:birth_date',
+            'sale_date' => 'nullable|date|after_or_equal:birth_date',
+        ]);
+
+        Pig::create($validated);
+
+        return redirect()->route('sipork.liderDeUnidad.sipork.gestion_de_cerdos.index')->with('success', 'Pig registered successfully.');
     }
 
     /**
@@ -61,10 +88,13 @@ class PigController extends Controller
     public function show($id)
     {
         $pig = Pig::findOrFail($id); // Fetch the pig by ID or fail
-        return view('sipork::admin.show', ['pig' => $pig]); // Pass the pig data to the view
+        return view('sipork::admin.gestion_de_cerdos.show', ['pig' => $pig]); // Pass the pig data to the view
+    }
 
-        // $pig = Pig::with('mother', 'lots', 'reproductiveCycles', 'growthTracking', 'healthRecords', 'tools')->findOrFail($id);
-        // return view('pigs.show', compact('pig'));
+    public function showlider($id)
+    {
+        $pig = Pig::findOrFail($id); // Fetch the pig by ID or fail
+        return view('sipork::liderDeUnidad.gestion_de_cerdos.show', ['pig' => $pig]); // Pass the pig data to the view
     }
 
     /**
@@ -76,7 +106,14 @@ class PigController extends Controller
     {
         $pig = Pig::findOrFail($id); // Fetch the pig by ID or fail
         $mothers = []; // Fetch or define $mothers data, e.g., from a model
-        return view('sipork::admin.edit', ['pig' => $pig, 'mothers' => $mothers]);
+        return view('sipork::admin.gestion_de_cerdos.edit', ['pig' => $pig, 'mothers' => $mothers]);
+    }
+
+    public function editlider($id)
+    {
+        $pig = Pig::findOrFail($id); // Fetch the pig by ID or fail
+        $mothers = []; // Fetch or define $mothers data, e.g., from a model
+        return view('sipork::liderDeUnidad.gestion_de_cerdos.edit', ['pig' => $pig, 'mothers' => $mothers]);
     }
 
     /**
@@ -101,7 +138,26 @@ class PigController extends Controller
 
         $pig->update($validated);
 
-        return redirect()->route('sipork.admin.sipork.admin.index')->with('success', 'Pig updated successfully.');
+        return redirect()->route('sipork.admin.sipork.gestion_de_cerdos.index')->with('success', 'Pig updated successfully.');
+    }
+
+    public function updatelider(Request $request, $id)
+    {
+        $pig = Pig::findOrFail($id);
+
+        $validated = $request->validate([
+            'birth_date' => 'required|date',
+            'initial_weight' => 'required|numeric|min:0',
+            'gender' => 'required|in:M,F',
+            'breed' => 'required|in:Pietrain,Duroc,Landrace,Hampshire,Large-White',
+            'status' => 'required|in:Active,Weaned,Sold,Deceased',
+            'weaning_date' => 'nullable|date|after_or_equal:birth_date',
+            'sale_date' => 'nullable|date|after_or_equal:birth_date',
+        ]);
+
+        $pig->update($validated);
+
+        return redirect()->route('sipork.liderDeUnidad.sipork.gestion_de_cerdos.index')->with('success', 'Pig updated successfully.');
     }
 
     /**
@@ -114,6 +170,14 @@ class PigController extends Controller
         $pig = Pig::findOrFail($id);
         $pig->delete();
 
-        return redirect()->route('sipork.admin.sipork.admin.index')->with('success', 'Pig deleted successfully.');
+        return redirect()->route('sipork.admin.sipork.gestion_de_cerdos.index')->with('success', 'Pig deleted successfully.');
+    }
+
+    public function destroylider($id)
+    {
+        $pig = Pig::findOrFail($id);
+        $pig->delete();
+
+        return redirect()->route('sipork.liderDeUnidad.sipork.gestion_de_cerdos.index')->with('success', 'Pig deleted successfully.');
     }
 }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,15 +60,12 @@
         }
     </style>
 </head>
-
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
             <img src="{{ asset('images/sipork.png') }}" alt="SIPORK Logo" height="100" width="150">
         </div>
-
-
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand" style="background: linear-gradient( #fff2f2, #ffe6e6);">
             <ul class="navbar-nav">
@@ -81,11 +77,9 @@
                     <a href="http://127.0.0.1:8000/sipork/index" class="nav-link">Inicio</a>
                 </li>
             </ul>
-
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="http://127.0.0.1:8000/sipork/admin/welcome" class="btn btn-success btn-sm ml-2">Volver</a>
             </li>
-
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
@@ -110,7 +104,6 @@
                         </form>
                     </div>
                 </li>
-
                 <!-- Language Switcher -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
@@ -122,7 +115,6 @@
                         <a href="{{ url('sipork/set-language/es') }}" class="dropdown-item">Español</a>
                     </div>
                 </li>
-
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
                     @auth
@@ -144,7 +136,6 @@
                     @endauth
                 </ul>
         </nav>
-
         <!-- Main Sidebar -->
         <aside class="main-sidebar elevation-4" style="background: linear-gradient( #fff2f2, #ffe6e6);">
             <!-- Brand Logo -->
@@ -154,7 +145,6 @@
                 <span class="brand-text font-weight-light"
                     style="font-size: 1.2rem; background: linear-gradient(to right, #000000, #434343); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">SIPORK</span>
             </a>
-
             <!-- Modal for displaying the image -->
             <div id="imageModal" class="modal"
                 style="display: none; position: fixed; z-index: 1050; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5);">
@@ -171,7 +161,6 @@
                     </div>
                 </div>
             </div>
-
             <script>
                 function showImageModal(event) {
                     event.preventDefault();
@@ -182,7 +171,6 @@
                     document.getElementById('imageModal').style.display = 'none';
                 }
             </script>
-
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar Menu -->
@@ -228,7 +216,6 @@
                         @endguest
                     </div>
                 </div>
-
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
@@ -240,13 +227,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('sipork.admin.sipork.admin.create') }}" class="nav-link">
+                                    <a href="{{ route('sipork.admin.sipork.gestion_de_cerdos.create') }}" class="nav-link">
                                         <i class="fas fa-plus-circle nav-icon"></i>
                                         <p>Añadir cerdo</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('sipork.admin.sipork.admin.index') }}" class="nav-link">
+                                    <a href="{{ route('sipork.admin.sipork.gestion_de_cerdos.index') }}" class="nav-link">
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Listado de Cerdos</p>
                                     </a>
@@ -299,11 +286,11 @@
                                 </li>
                             </ul>
                         </li>
-                        <!-- Gestión de la salud -->
+                        <!-- Gestión de salud -->
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link text-pink">
                                 <i class="fas fa-stethoscope nav-icon"></i>&nbsp;
-                                <p>Gestión de la salud<i class="right fas fa-angle-left"></i></p>
+                                <p>Gestión de salud<i class="right fas fa-angle-left"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
@@ -391,8 +378,6 @@
                                 </li>
                             </ul>
                         </li>
-
-
                         <!-- Gestión de la alimentación -->
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link text-pink">
@@ -461,7 +446,6 @@
                                     </ul>
                                 </li>
                             </ul>
-
                             <!--Gestión de recursos -->
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link text-pink">
@@ -563,26 +547,60 @@
                                 </li>
                             </ul>
                         </li>
-
                         <!-- Gestión Ambiental y de Bioseguridad -->
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link text-pink">
                                 <i class="nav-icon fas fa-leaf"></i>
-                                <i class="right fas fa-angle-left"></i>
-                                <p>Ambiente-Bioseg.</p>
+                                <p>Ambiente-Bioseg. <i class="right fas fa-angle-left"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Condiciones ambientales</p>
+                                <!-- Condiciones ambientales -->
+                                <li class="nav-item has-treeview">
+                                    <a href="#" class="nav-link text-pink">
+                                        <i class="fas fa-cloud-sun nav-icon"></i>
+                                        <p>
+                                            Cond. ambientales
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
                                     </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="{{ route('sipork.admin.sipork.condiciones_ambientales.create') }}" class="nav-link">
+                                                <i class="fas fa-plus-circle nav-icon"></i>
+                                                <p>Ingreso</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('sipork.admin.sipork.condiciones_ambientales.index') }}" class="nav-link">
+                                                <i class="fas fa-list nav-icon"></i>
+                                                <p>Listado</p>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Medidas de bioseguridad</p>
+                                <!-- Medidas de bioseguridad -->
+                                <li class="nav-item has-treeview">
+                                    <a href="#" class="nav-link text-pink">
+                                        <i class="fas fa-shield-virus nav-icon"></i>
+                                        <p>
+                                            Bioseguridad
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
                                     </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="{{ route('sipork.admin.sipork.medidas_de_bioseguridad.create') }}" class="nav-link">
+                                                <i class="fas fa-plus-circle nav-icon"></i>
+                                                <p>Ingreso</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('sipork.admin.sipork.medidas_de_bioseguridad.index') }}" class="nav-link">
+                                                <i class="fas fa-list nav-icon"></i>
+                                                <p>Listado</p>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
@@ -609,32 +627,92 @@
                                 </li>
                             </ul>
                             <!-- Apartado de Reportes -->
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="nav-icon fas fa-chart-bar"></i>
-                                <p>Reportes</p>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link text-pink">
+                                <i class="nav-icon fas fa-file-alt"></i>
+                                <p>Reportes<i class="right fas fa-angle-left"></i></p>
                             </a>
-                        </li>
-                    </ul>
-                    </li>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('sipork.admin.sipork.reportes.create') }}"
+                                        class="nav-link">
+                                        <i class="fas fa-plus-circle nav-icon"></i>
+                                        <p>Ingreso</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('sipork.admin.sipork.reportes.index') }}"
+                                        class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Listado</p>
+                                    </a>
+                                </li>
+                            </ul>
                 </nav>
             </div>
         </aside>
-
         <!-- Content Wrapper -->
         <div class="content-wrapper" style="max-width: 1600px; margin: 0 auto;">
             @yield('content')
         </div>
-
-        <!-- Footer -->
-        <footer class="main-footer">
-            <strong>Copyright © 2023-2025 <a href="#">SIPORK</a>.</strong> All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.2.0
+        <!-- Footer Mejorado -->
+        <footer class="main-footer" style="background: linear-gradient(#fff2f2,rgb(250, 158, 158)); color: #4e342e; border-top: 3px solid #e67e22; box-shadow: 0 -2px 10px rgba(161,108,58,0.08);">
+            <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between py-2">
+                <div class="d-flex align-items-center mb-2 mb-md-0">
+                    <img src="{{ asset('images/sipork.png') }}" alt="SIPORK Logo" style="height:32px;width:auto;margin-right:10px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.15));">
+                    <span>
+                        <strong>&copy; 2023-2025 <a href="#" style="color:#e67e22;text-decoration:underline;">SIPORK</a>.</strong>
+                        Todos los derechos reservados.
+                    </span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="mr-3" style="font-size:1.1em;">
+                        <i class="fas fa-leaf" style="color:#8bc34a;"></i> Gestión porcina sostenible
+                    </span>
+                    <span class="badge badge-warning px-3 py-2" style="font-size:1em;box-shadow:0 1px 4px rgba(0,0,0,0.08);background:#f7c873;color:#4e342e;border:1px solid #a16c3a;">
+                        <b>Versión</b> 1.1.1
+                    </span>
+                </div>
             </div>
         </footer>
-    </div>
+        <style>
+            /* Responsive footer */
+            @media (max-width: 767.98px) {
+                .main-footer .container-fluid {
+                    flex-direction: column !important;
+                    text-align: center;
+                }
 
+                .main-footer .d-flex.align-items-center {
+                    justify-content: center !important;
+                }
+            }
+            /* Pig farming themed colors */
+            .main-footer {
+                background: linear-gradient(90deg, #a16c3a 0%, #f7c873 100%);
+                color: #4e342e;
+                border-top: 3px solid #e67e22;
+            }
+
+            .main-footer a {
+                color: #e67e22;
+            }
+
+            .main-footer a:hover {
+                color: #8d5524;
+            }
+
+            .main-footer .badge-warning {
+                background: #f7c873;
+                color: #4e342e;
+                border: 1px solid #a16c3a;
+            }
+
+            .main-footer .fa-leaf {
+                color: #8bc34a !important;
+            }
+        </style>
+    </div>
     <!-- Scripts -->
     <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('adminlte/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
@@ -645,5 +723,4 @@
     <script src="{{ asset('adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
 </body>
-
 </html>

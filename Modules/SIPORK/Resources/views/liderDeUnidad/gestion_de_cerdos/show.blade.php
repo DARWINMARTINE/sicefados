@@ -1,4 +1,4 @@
-@extends('sipork::layouts.master')
+@extends('sipork::layouts.masterLiderDeUnidad')
 
 @section('content')
 <br><br><br>
@@ -17,7 +17,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('sipork.admin.sipork.admin.index') }}" class="text-primary font-weight-bold">
+                            <a href="{{ route('sipork.liderDeUnidad.sipork.gestion_de_cerdos.index') }}" class="text-primary font-weight-bold">
                                 <i class="fas fa-piggy-bank"></i> Pigs
                             </a>
                         </li>
@@ -40,10 +40,10 @@
                         <div class="d-flex justify-content-between align-items-center w-100">
                             <h3 class="card-title text-center w-100"><i class="fas fa-info-circle"></i> Información del Cerdo</h3>
                             <div class="card-tools ml-auto d-flex">
-                                <a href="{{ route('sipork.admin.sipork.admin.edit', $pig->id_pig) }}" class="btn btn-warning btn-sm mr-2">
+                                <a href="{{ route('sipork.liderDeUnidad.sipork.gestion_de_cerdos.edit', $pig->id_pig) }}" class="btn btn-warning btn-sm mr-2">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="{{ route('sipork.admin.sipork.admin.destroy', $pig->id_pig) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete();">
+                                <form action="{{ route('sipork.liderDeUnidad.sipork.gestion_de_cerdos.destroy', $pig->id_pig) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete();">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm">

@@ -25,13 +25,14 @@ Route::middleware(['lang'])->group(function () {
 Route::middleware(['auth'])->group(function () {
         Route::prefix('sipork')->group(function () {
             // rutas para el administrador
-            Route::get('/admin', 'PigController@index')->name('sipork.admin.sipork.admin.index');
-            Route::get('/admin/create', 'PigController@create')->name('sipork.admin.sipork.admin.create');
-            Route::get('/admin/{id}/edit', 'PigController@edit')->name('sipork.admin.sipork.admin.edit');
-            Route::get('/admin/{id}', 'PigController@show')->name('sipork.admin.sipork.admin.show');
-            Route::post('/admin/store', 'PigController@store')->name('sipork.admin.sipork.admin.store');
-            Route::put('/admin/{id}', 'PigController@update')->name('sipork.admin.sipork.admin.update');
-            Route::delete('/admin/{id}', 'PigController@destroy')->name('sipork.admin.sipork.admin.destroy');
+            // rutas para la gestion de cerdos
+            Route::get('/admin', 'PigController@index')->name('sipork.admin.sipork.gestion_de_cerdos.index');
+            Route::get('/admin/create', 'PigController@create')->name('sipork.admin.sipork.gestion_de_cerdos.create');
+            Route::get('/admin/{id}/edit', 'PigController@edit')->name('sipork.admin.sipork.gestion_de_cerdos.edit');
+            Route::get('/admin/{id}', 'PigController@show')->name('sipork.admin.sipork.gestion_de_cerdos.show');
+            Route::post('/admin/store', 'PigController@store')->name('sipork.admin.sipork.gestion_de_cerdos.store');
+            Route::put('/admin/{id}', 'PigController@update')->name('sipork.admin.sipork.gestion_de_cerdos.update');
+            Route::delete('/admin/{id}', 'PigController@destroy')->name('sipork.admin.sipork.gestion_de_cerdos.destroy');
             // rutas para los siclos reproductivos
             Route::get('/ciclos_reproductivos', 'ReproductiveCycleController@index')->name('sipork.admin.sipork.ciclos_reproductivos.index');
             Route::get('/ciclos_reproductivos/create', 'ReproductiveCycleController@create')->name('sipork.admin.sipork.ciclos_reproductivos.create');
@@ -144,15 +145,86 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/uso_de_herramientas/{id}', 'ToolPigController@update')->name('sipork.admin.sipork.uso_de_herramientas.update');
             Route::get('/uso_de_herramientas/{id}', 'ToolPigController@show')->name('sipork.admin.sipork.uso_de_herramientas.show');
             Route::delete('/uso_de_herramientas/{id}', 'ToolPigController@destroy')->name('sipork.admin.sipork.uso_de_herramientas.destroy');
+            // rutas para las condiciones ambientales
+            Route::get('/condiciones_ambientales', 'EnvironmentalConditionController@index')->name('sipork.admin.sipork.condiciones_ambientales.index');
+            Route::get('/condiciones_ambientales/create', 'EnvironmentalConditionController@create')->name('sipork.admin.sipork.condiciones_ambientales.create');
+            Route::post('/condiciones_ambientales/store', 'EnvironmentalConditionController@store')->name('sipork.admin.sipork.condiciones_ambientales.store');
+            Route::get('/condiciones_ambientales/{id}/edit', 'EnvironmentalConditionController@edit')->name('sipork.admin.sipork.condiciones_ambientales.edit');
+            Route::put('/condiciones_ambientales/{id}', 'EnvironmentalConditionController@update')->name('sipork.admin.sipork.condiciones_ambientales.update');
+            Route::get('/condiciones_ambientales/{id}', 'EnvironmentalConditionController@show')->name('sipork.admin.sipork.condiciones_ambientales.show');
+            Route::delete('/condiciones_ambientales/{id}', 'EnvironmentalConditionController@destroy')->name('sipork.admin.sipork.condiciones_ambientales.destroy');
+            // rutas para las medidas de bioseguridad
+            Route::get('/medidas_de_bioseguridad', 'BiosecurityMeasureController@index')->name('sipork.admin.sipork.medidas_de_bioseguridad.index');
+            Route::get('/medidas_de_bioseguridad/create', 'BiosecurityMeasureController@create')->name('sipork.admin.sipork.medidas_de_bioseguridad.create');
+            Route::post('/medidas_de_bioseguridad/store', 'BiosecurityMeasureController@store')->name('sipork.admin.sipork.medidas_de_bioseguridad.store');
+            Route::get('/medidas_de_bioseguridad/{id}/edit', 'BiosecurityMeasureController@edit')->name('sipork.admin.sipork.medidas_de_bioseguridad.edit');
+            Route::put('/medidas_de_bioseguridad/{id}', 'BiosecurityMeasureController@update')->name('sipork.admin.sipork.medidas_de_bioseguridad.update');
+            Route::get('/medidas_de_bioseguridad/{id}', 'BiosecurityMeasureController@show')->name('sipork.admin.sipork.medidas_de_bioseguridad.show');
+            Route::delete('/medidas_de_bioseguridad/{id}', 'BiosecurityMeasureController@destroy')->name('sipork.admin.sipork.medidas_de_bioseguridad.destroy');
+            // rutas para los reportes
+            Route::get('/reportes', 'ReportController@index')->name('sipork.admin.sipork.reportes.index');
+            Route::get('/reportes/create', 'ReportController@create')->name('sipork.admin.sipork.reportes.create');
+            Route::post('/reportes/store', 'ReportController@store')->name('sipork.admin.sipork.reportes.store');
+            Route::get('/reportes/{id}/edit', 'ReportController@edit')->name('sipork.admin.sipork.reportes.edit');
+            Route::put('/reportes/{id}', 'ReportController@update')->name('sipork.admin.sipork.reportes.update');
+            Route::get('/reportes/{id}', 'ReportController@show')->name('sipork.admin.sipork.reportes.show');
+            Route::delete('/reportes/{id}', 'ReportController@destroy')->name('sipork.admin.sipork.reportes.destroy');
             
             
             // rutas para los lideres de unidad
-            Route::get('/liderDeUnidad', 'PigController@index')->name('sipork.liderDeUnidad.sipork.liderDeUnidad.index');
-            Route::get('/liderDeUnidad/create', 'PigController@create')->name('sipork.liderDeUnidad.sipork.liderDeUnidad.create');
+            // rutas para la gestion de cerdos
+            Route::get('/liderDeUnidad', 'PigController@indexlider')->name('sipork.liderDeUnidad.sipork.gestion_de_cerdos.index');
+            Route::get('/liderDeUnidad/create', 'PigController@createlider')->name('sipork.liderDeUnidad.sipork.gestion_de_cerdos.create');
+            Route::get('/liderDeUnidad/{id}/edit', 'PigController@editlider')->name('sipork.liderDeUnidad.sipork.gestion_de_cerdos.edit');
+            Route::get('/liderDeUnidad/{id}', 'PigController@showlider')->name('sipork.liderDeUnidad.sipork.gestion_de_cerdos.show');
+            Route::post('/liderDeUnidad/store', 'PigController@storelider')->name('sipork.liderDeUnidad.sipork.gestion_de_cerdos.store');
+            Route::put('/liderDeUnidad/{id}', 'PigController@updatelider')->name('sipork.liderDeUnidad.sipork.gestion_de_cerdos.update');
+            Route::delete('/liderDeUnidad/{id}', 'PigController@destroylider')->name('sipork.liderDeUnidad.sipork.gestion_de_cerdos.destroy');
+            // rutas para condiciones ambientales
+            Route::get('/condiciones-ambientales', 'EnvironmentalConditionController@indexlider')->name('sipork.liderDeUnidad.sipork.condiciones-ambientales.index');
+            Route::get('/condiciones-ambientales/create', 'EnvironmentalConditionController@createlider')->name('sipork.liderDeUnidad.sipork.condiciones-ambientales.create');
+            Route::post('/condiciones-ambientales/store', 'EnvironmentalConditionController@storelider')->name('sipork.liderDeUnidad.sipork.condiciones-ambientales.store');
+            Route::get('/condiciones-ambientales/{id}/edit', 'EnvironmentalConditionController@editlider')->name('sipork.liderDeUnidad.sipork.condiciones-ambientales.edit');
+            Route::put('/condiciones-ambientales/{id}', 'EnvironmentalConditionController@updatelider')->name('sipork.liderDeUnidad.sipork.condiciones-ambientales.update');
+            Route::get('/condiciones-ambientales/{id}', 'EnvironmentalConditionController@showlider')->name('sipork.liderDeUnidad.sipork.condiciones-ambientales.show');
+            Route::delete('/condiciones-ambientales/{id}', 'EnvironmentalConditionController@destroylider')->name('sipork.liderDeUnidad.sipork.condiciones-ambientales.destroy');
+            // rutas para medidas_de_bioseguridad
+            Route::get('/medidas-de-bioseguridad', 'BiosecurityMeasureController@indexlider')->name('sipork.liderDeUnidad.sipork.medidas-de-bioseguridad.index');
+            Route::get('/medidas-de-bioseguridad/create', 'BiosecurityMeasureController@createlider')->name('sipork.liderDeUnidad.sipork.medidas-de-bioseguridad.create');
+            Route::post('/medidas-de-bioseguridad/store', 'BiosecurityMeasureController@storelider')->name('sipork.liderDeUnidad.sipork.medidas-de-bioseguridad.store');
+            Route::get('/medidas-de-bioseguridad/{id}/edit', 'BiosecurityMeasureController@editlider')->name('sipork.liderDeUnidad.sipork.medidas-de-bioseguridad.edit');
+            Route::put('/medidas-de-bioseguridad/{id}', 'BiosecurityMeasureController@updatelider')->name('sipork.liderDeUnidad.sipork.medidas-de-bioseguridad.update');
+            Route::get('/medidas-de-bioseguridad/{id}', 'BiosecurityMeasureController@showlider')->name('sipork.liderDeUnidad.sipork.medidas-de-bioseguridad.show');
+            Route::delete('/medidas-de-bioseguridad/{id}', 'BiosecurityMeasureController@destroylider')->name('sipork.liderDeUnidad.sipork.medidas-de-bioseguridad.destroy');
+            // rutas para los costos-operativos
+            Route::get('/costos-operativos', 'OperationalCostController@indexlider')->name('sipork.liderDeUnidad.sipork.costos-operativos.index');
+            Route::get('/costos-operativos/create', 'OperationalCostController@createlider')->name('sipork.liderDeUnidad.sipork.costos-operativos.create');
+            Route::post('/costos-operativos/store', 'OperationalCostController@storelider')->name('sipork.liderDeUnidad.sipork.costos-operativos.store');
+            Route::get('/costos-operativos/{id}/edit', 'OperationalCostController@editlider')->name('sipork.liderDeUnidad.sipork.costos-operativos.edit');
+            Route::put('/costos-operativos/{id}', 'OperationalCostController@updatelider')->name('sipork.liderDeUnidad.sipork.costos-operativos.update');
+            Route::get('/costos-operativos/{id}', 'OperationalCostController@showlider')->name('sipork.liderDeUnidad.sipork.costos-operativos.show');
+            Route::delete('/costos-operativos/{id}', 'OperationalCostController@destroylider')->name('sipork.liderDeUnidad.sipork.costos-operativos.destroy');
+            // rutas para los imformes
+            Route::get('/informes', 'ReportController@indexlider')->name('sipork.liderDeUnidad.sipork.informes.index');
+            Route::get('/informes/create', 'ReportController@createlider')->name('sipork.liderDeUnidad.sipork.informes.create');
+            Route::post('/informes/store', 'ReportController@storelider')->name('sipork.liderDeUnidad.sipork.informes.store');
+            Route::get('/informes/{id}/edit', 'ReportController@editlider')->name('sipork.liderDeUnidad.sipork.informes.edit');
+            Route::put('/informes/{id}', 'ReportController@updatelider')->name('sipork.liderDeUnidad.sipork.informes.update');
+            Route::get('/informes/{id}', 'ReportController@showlider')->name('sipork.liderDeUnidad.sipork.informes.show');
+            Route::delete('/informes/{id}', 'ReportController@destroylider')->name('sipork.liderDeUnidad.sipork.informes.destroy');
+
 
             // rutas para los aprendices
-            Route::get('/aprendiz', 'PigController@index')->name('sipork.aprendiz.sipork.aprendiz.index');
-            Route::get('/aprendiz/create', 'PigController@create')->name('sipork.aprendiz.sipork.aprendiz.create');
+            // rutas para la alimentacion
+            Route::get('/ALIMENTACION', 'FeedingController@indexaprendiz')->name('sipork.aprendiz.sipork.ALIMENTACION.index');
+            Route::get('/ALIMENTACION/create', 'FeedingController@createaprendiz')->name('sipork.aprendiz.sipork.ALIMENTACION.create');
+            Route::post('/ALIMENTACION/store', 'FeedingController@storeaprendiz')->name('sipork.aprendiz.sipork.ALIMENTACION.store');
+            Route::get('/ALIMENTACION/{id}/edit', 'FeedingController@editaprendiz')->name('sipork.aprendiz.sipork.ALIMENTACION.edit');
+            Route::put('/ALIMENTACION/{id}', 'FeedingController@updateaprendiz')->name('sipork.aprendiz.sipork.ALIMENTACION.update');
+            Route::get('/ALIMENTACION/{id}', 'FeedingController@showaprendiz')->name('sipork.aprendiz.sipork.ALIMENTACION.show');
+            Route::delete('/ALIMENTACION/{id}', 'FeedingController@destroyaprendiz')->name('sipork.aprendiz.sipork.ALIMENTACION.destroy');
+            // rutas para los lotes
+    
 
             // rutas para el lenguaje
             Route::get('/set-language/{locale}', 'LanguageController@setLanguage')->name('sipork.setLanguage');

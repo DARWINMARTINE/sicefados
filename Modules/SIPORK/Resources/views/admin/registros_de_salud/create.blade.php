@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="record_type">Tipo de registro</label>
+                            <label for="record_type">Tipo de tratamiento</label>
                             <input type="text" name="record_type" id="record_type" class="form-control @error('record_type') is-invalid @enderror" value="{{ old('record_type') }}">
                             @error('record_type')
                                 <span class="invalid-feedback">{{ $message }}</span>

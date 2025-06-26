@@ -1,4 +1,4 @@
-@extends('sipork::layouts.master')
+@extends('sipork::layouts.masterLiderDeUnidad')
 
 @section('content')
 <br><br><br>
@@ -20,7 +20,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('sipork.admin.sipork.admin.index') }}" class="text-primary font-weight-bold">
+                            <a href="{{ route('sipork.liderDeUnidad.sipork.gestion_de_cerdos.index') }}" class="text-primary font-weight-bold">
                                 <i class="fas fa-piggy-bank"></i> Pigs
                             </a>
                         </li>
@@ -44,7 +44,7 @@
                             <i class="fas fa-edit"></i> Editar Detalles del Cerdo
                         </h5>
                     </div>
-                    <form action="{{ route('sipork.admin.sipork.admin.update', $pig->id_pig) }}" method="POST">
+                    <form action="{{ route('sipork.liderDeUnidad.sipork.gestion_de_cerdos.update', $pig->id_pig) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-body">
@@ -152,7 +152,7 @@
                         </div>
 
                         <div class="card-footer bg-light d-flex justify-content-end">
-                            <a href="{{ route('sipork.admin.sipork.admin.index') }}" class="btn btn-secondary mr-2">
+                            <a href="{{ route('sipork.liderDeUnidad.sipork.gestion_de_cerdos.index') }}" class="btn btn-secondary mr-2">
                                 <i class="fas fa-times"></i> Cancelar
                             </a>
                             <button type="submit" class="btn btn-primary">
