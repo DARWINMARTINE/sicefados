@@ -170,7 +170,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/reportes/{id}', 'ReportController@show')->name('sipork.admin.sipork.reportes.show');
             Route::delete('/reportes/{id}', 'ReportController@destroy')->name('sipork.admin.sipork.reportes.destroy');
             
-            
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // rutas para los lideres de unidad
             // rutas para la gestion de cerdos
             Route::get('/liderDeUnidad', 'PigController@indexlider')->name('sipork.liderDeUnidad.sipork.gestion_de_cerdos.index');
@@ -214,6 +215,7 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/informes/{id}', 'ReportController@destroylider')->name('sipork.liderDeUnidad.sipork.informes.destroy');
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // rutas para los aprendices
             // rutas para la alimentacion
             Route::get('/ALIMENTACION', 'FeedingController@indexaprendiz')->name('sipork.aprendiz.sipork.ALIMENTACION.index');
@@ -223,11 +225,81 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/ALIMENTACION/{id}', 'FeedingController@updateaprendiz')->name('sipork.aprendiz.sipork.ALIMENTACION.update');
             Route::get('/ALIMENTACION/{id}', 'FeedingController@showaprendiz')->name('sipork.aprendiz.sipork.ALIMENTACION.show');
             Route::delete('/ALIMENTACION/{id}', 'FeedingController@destroyaprendiz')->name('sipork.aprendiz.sipork.ALIMENTACION.destroy');
+            // rutas para las dietas
+            Route::get('/DIETAS', 'DietController@indexaprendiz')->name('sipork.aprendiz.sipork.DIETAS.index');
+            Route::get('/DIETAS/create', 'DietController@createaprendiz')->name('sipork.aprendiz.sipork.DIETAS.create');
+            Route::post('/DIETAS/store', 'DietController@storeaprendiz')->name('sipork.aprendiz.sipork.DIETAS.store');
+            Route::get('/DIETAS/{id}/edit', 'DietController@editaprendiz')->name('sipork.aprendiz.sipork.DIETAS.edit');
+            Route::put('/DIETAS/{id}', 'DietController@updateaprendiz')->name('sipork.aprendiz.sipork.DIETAS.update');
+            Route::get('/DIETAS/{id}', 'DietController@showaprendiz')->name('sipork.aprendiz.sipork.DIETAS.show');
+            Route::delete('/DIETAS/{id}', 'DietController@destroyaprendiz')->name('sipork.aprendiz.sipork.DIETAS.destroy');
+            // rutas para los insumos alimenticios
+            Route::get('/INSUMOS_ALIMENTICIOS', 'SupplyFeedingController@indexaprendiz')->name('sipork.aprendiz.sipork.INSUMOS_ALIMENTICIOS.index');
+            Route::get('/INSUMOS_ALIMENTICIOS/create', 'SupplyFeedingController@createaprendiz')->name('sipork.aprendiz.sipork.INSUMOS_ALIMENTICIOS.create');
+            Route::post('/INSUMOS_ALIMENTICIOS/store', 'SupplyFeedingController@storeaprendiz')->name('sipork.aprendiz.sipork.INSUMOS_ALIMENTICIOS.store');
+            Route::get('/INSUMOS_ALIMENTICIOS/{id}/edit', 'SupplyFeedingController@editaprendiz')->name('sipork.aprendiz.sipork.INSUMOS_ALIMENTICIOS.edit');
+            Route::put('/INSUMOS_ALIMENTICIOS/{id}', 'SupplyFeedingController@updateaprendiz')->name('sipork.aprendiz.sipork.INSUMOS_ALIMENTICIOS.update');
+            Route::get('/INSUMOS_ALIMENTICIOS/{id}', 'SupplyFeedingController@showaprendiz')->name('sipork.aprendiz.sipork.INSUMOS_ALIMENTICIOS.show');
+            Route::delete('/INSUMOS_ALIMENTICIOS/{id}', 'SupplyFeedingController@destroyaprendiz')->name('sipork.aprendiz.sipork.INSUMOS_ALIMENTICIOS.destroy');
+            // rutas para los suministros
+            Route::get('/SUMINISTROS', 'SupplySiporkController@indexaprendiz')->name('sipork.aprendiz.sipork.SUMINISTROS.index');
+            Route::get('/SUMINISTROS/create', 'SupplySiporkController@createaprendiz')->name('sipork.aprendiz.sipork.SUMINISTROS.create');
+            Route::post('/SUMINISTROS/store', 'SupplySiporkController@storeaprendiz')->name('sipork.aprendiz.sipork.SUMINISTROS.store');
+            Route::get('/SUMINISTROS/{id}/edit', 'SupplySiporkController@editaprendiz')->name('sipork.aprendiz.sipork.SUMINISTROS.edit');
+            Route::put('/SUMINISTROS/{id}', 'SupplySiporkController@updateaprendiz')->name('sipork.aprendiz.sipork.SUMINISTROS.update');
+            Route::get('/SUMINISTROS/{id}', 'SupplySiporkController@showaprendiz')->name('sipork.aprendiz.sipork.SUMINISTROS.show');
+            Route::delete('/SUMINISTROS/{id}', 'SupplySiporkController@destroyaprendiz')->name('sipork.aprendiz.sipork.SUMINISTROS.destroy');
+            // rutas para las herramientas
+            Route::get('/HERRAMIENTAS', 'ToolSiporkController@indexaprendiz')->name('sipork.aprendiz.sipork.HERRAMIENTAS.index');
+            Route::get('/HERRAMIENTAS/create', 'ToolSiporkController@createaprendiz')->name('sipork.aprendiz.sipork.HERRAMIENTAS.create');
+            Route::post('/HERRAMIENTAS/store', 'ToolSiporkController@storeaprendiz')->name('sipork.aprendiz.sipork.HERRAMIENTAS.store');
+            Route::get('/HERRAMIENTAS/{id}/edit', 'ToolSiporkController@editaprendiz')->name('sipork.aprendiz.sipork.HERRAMIENTAS.edit');
+            Route::put('/HERRAMIENTAS/{id}', 'ToolSiporkController@updateaprendiz')->name('sipork.aprendiz.sipork.HERRAMIENTAS.update');
+            Route::get('/HERRAMIENTAS/{id}', 'ToolSiporkController@showaprendiz')->name('sipork.aprendiz.sipork.HERRAMIENTAS.show');
+            Route::delete('/HERRAMIENTAS/{id}', 'ToolSiporkController@destroyaprendiz')->name('sipork.aprendiz.sipork.HERRAMIENTAS.destroy');
+            // rutas para el uso de herramientas
+            Route::get('/USO_HERRAMIENTAS', 'ToolPigController@indexaprendiz')->name('sipork.aprendiz.sipork.USO_HERRAMIENTAS.index');
+            Route::get('/USO_HERRAMIENTAS/create', 'ToolPigController@createaprendiz')->name('sipork.aprendiz.sipork.USO_HERRAMIENTAS.create');
+            Route::post('/USO_HERRAMIENTAS/store', 'ToolPigController@storeaprendiz')->name('sipork.aprendiz.sipork.USO_HERRAMIENTAS.store');
+            Route::get('/USO_HERRAMIENTAS/{id}/edit', 'ToolPigController@editaprendiz')->name('sipork.aprendiz.sipork.USO_HERRAMIENTAS.edit');
+            Route::put('/USO_HERRAMIENTAS/{id}', 'ToolPigController@updateaprendiz')->name('sipork.aprendiz.sipork.USO_HERRAMIENTAS.update');
+            Route::get('/USO_HERRAMIENTAS/{id}', 'ToolPigController@showaprendiz')->name('sipork.aprendiz.sipork.USO_HERRAMIENTAS.show');
+            Route::delete('/USO_HERRAMIENTAS/{id}', 'ToolPigController@destroyaprendiz')->name('sipork.aprendiz.sipork.USO_HERRAMIENTAS.destroy');
+            // rutas para bodegas
+            Route::get('/BODEGAS', 'WarehouseSiporkController@indexaprendiz')->name('sipork.aprendiz.sipork.BODEGAS.index');
+            Route::get('/BODEGAS/create', 'WarehouseSiporkController@createaprendiz')->name('sipork.aprendiz.sipork.BODEGAS.create');
+            Route::post('/BODEGAS/store', 'WarehouseSiporkController@storeaprendiz')->name('sipork.aprendiz.sipork.BODEGAS.store');
+            Route::get('/BODEGAS/{id}/edit', 'WarehouseSiporkController@editaprendiz')->name('sipork.aprendiz.sipork.BODEGAS.edit');
+            Route::put('/BODEGAS/{id}', 'WarehouseSiporkController@updateaprendiz')->name('sipork.aprendiz.sipork.BODEGAS.update');
+            Route::get('/BODEGAS/{id}', 'WarehouseSiporkController@showaprendiz')->name('sipork.aprendiz.sipork.BODEGAS.show');
+            Route::delete('/BODEGAS/{id}', 'WarehouseSiporkController@destroyaprendiz')->name('sipork.aprendiz.sipork.BODEGAS.destroy');
             // rutas para los lotes
+            Route::get('/LOTES', 'LotController@indexaprendiz')->name('sipork.aprendiz.sipork.LOTES.index');
+            Route::get('/LOTES/create', 'LotController@createaprendiz')->name('sipork.aprendiz.sipork.LOTES.create');
+            Route::post('/LOTES/store', 'LotController@storeaprendiz')->name('sipork.aprendiz.sipork.LOTES.store');
+            Route::get('/LOTES/{id}/edit', 'LotController@editaprendiz')->name('sipork.aprendiz.sipork.LOTES.edit');
+            Route::put('/LOTES/{id}', 'LotController@updateaprendiz')->name('sipork.aprendiz.sipork.LOTES.update');
+            Route::get('/LOTES/{id}', 'LotController@showaprendiz')->name('sipork.aprendiz.sipork.LOTES.show');
+            Route::delete('/LOTES/{id}', 'LotController@destroyaprendiz')->name('sipork.aprendiz.sipork.LOTES.destroy');
+            // rutas para asignar cerdos
+            Route::get('/ASIGNAR_CERDOS', 'PigLotController@indexaprendiz')->name('sipork.aprendiz.sipork.ASIGNAR_CERDOS.index');
+            Route::get('/ASIGNAR_CERDOS/create', 'PigLotController@createaprendiz')->name('sipork.aprendiz.sipork.ASIGNAR_CERDOS.create');
+            Route::post('/ASIGNAR_CERDOS/store', 'PigLotController@storeaprendiz')->name('sipork.aprendiz.sipork.ASIGNAR_CERDOS.store');
+            Route::get('/ASIGNAR_CERDOS/{id}/edit/{otherId}', 'PigLotController@editaprendiz')->name('sipork.aprendiz.sipork.ASIGNAR_CERDOS.edit');
+            Route::put('/ASIGNAR_CERDOS/{id}/{otherId}', 'PigLotController@updateaprendiz')->name('sipork.aprendiz.sipork.ASIGNAR_CERDOS.update');
+            Route::get('/ASIGNAR_CERDOS/{id}/{otherId}', 'PigLotController@showaprendiz')->name('sipork.aprendiz.sipork.ASIGNAR_CERDOS.show');
+            Route::delete('/ASIGNAR_CERDOS/{id}/{otherId}', 'PigLotController@destroyaprendiz')->name('sipork.aprendiz.sipork.ASIGNAR_CERDOS.destroy');
+            // rutas para ciclos reproductivos
+            Route::get('/CICLOS_REPRODUCTIVOS', 'ReproductiveCycleController@indexaprendiz')->name('sipork.aprendiz.sipork.CICLOS_REPRODUCTIVOS.index');
+            Route::get('/CICLOS_REPRODUCTIVOS/create', 'ReproductiveCycleController@createaprendiz')->name('sipork.aprendiz.sipork.CICLOS_REPRODUCTIVOS.create');
+            Route::post('/CICLOS_REPRODUCTIVOS/store', 'ReproductiveCycleController@storeaprendiz')->name('sipork.aprendiz.sipork.CICLOS_REPRODUCTIVOS.store');
+            Route::get('/CICLOS_REPRODUCTIVOS/{id}/edit', 'ReproductiveCycleController@editaprendiz')->name('sipork.aprendiz.sipork.CICLOS_REPRODUCTIVOS.edit');
+            Route::put('/CICLOS_REPRODUCTIVOS/{id}', 'ReproductiveCycleController@updateaprendiz')->name('sipork.aprendiz.sipork.CICLOS_REPRODUCTIVOS.update');
+            Route::get('/CICLOS_REPRODUCTIVOS/{id}', 'ReproductiveCycleController@showaprendiz')->name('sipork.aprendiz.sipork.CICLOS_REPRODUCTIVOS.show');
+            Route::delete('/CICLOS_REPRODUCTIVOS/{id}', 'ReproductiveCycleController@destroyaprendiz')->name('sipork.aprendiz.sipork.CICLOS_REPRODUCTIVOS.destroy');
     
 
             // rutas para el lenguaje
             Route::get('/set-language/{locale}', 'LanguageController@setLanguage')->name('sipork.setLanguage');
-            
         });
     });

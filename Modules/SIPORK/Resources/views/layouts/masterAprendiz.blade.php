@@ -250,14 +250,14 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('sipork.admin.sipork.dietas.create') }}"
+                                    <a href="{{ route('sipork.aprendiz.sipork.DIETAS.create') }}"
                                         class="nav-link">
                                         <i class="fas fa-plus-circle nav-icon"></i>
                                         <p>Ingreso</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('sipork.admin.sipork.dietas.index') }}"
+                                    <a href="{{ route('sipork.aprendiz.sipork.DIETAS.index') }}"
                                         class="nav-link">
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Listado</p>
@@ -271,14 +271,14 @@
                                     </a>
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <a href="{{ route('sipork.admin.sipork.insumos_alimenticios.create') }}"
+                                            <a href="{{ route('sipork.aprendiz.sipork.INSUMOS_ALIMENTICIOS.create') }}"
                                                 class="nav-link">
                                                 <i class="fas fa-plus-circle nav-icon"></i>
                                                 <p>Ingreso</p>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ route('sipork.admin.sipork.insumos_alimenticios.index') }}"
+                                            <a href="{{ route('sipork.aprendiz.sipork.INSUMOS_ALIMENTICIOS.index') }}"
                                                 class="nav-link">
                                                 <i class="fas fa-list nav-icon"></i>
                                                 <p>Listado</p>
@@ -302,14 +302,14 @@
                                     </a>
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <a href="{{ route('sipork.admin.sipork.suministros.create') }}"
+                                            <a href="{{ route('sipork.aprendiz.sipork.SUMINISTROS.create') }}"
                                                 class="nav-link">
                                                 <i class="fas fa-plus-circle nav-icon"></i>
                                                 <p>Ingreso</p>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ route('sipork.admin.sipork.suministros.index') }}"
+                                            <a href="{{ route('sipork.aprendiz.sipork.SUMINISTROS.index') }}"
                                                 class="nav-link">
                                                 <i class="fas fa-list nav-icon"></i>
                                                 <p>Listado</p>
@@ -325,14 +325,14 @@
                                     </a>
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <a href="{{ route('sipork.admin.sipork.herramientas.create') }}"
+                                            <a href="{{ route('sipork.aprendiz.sipork.HERRAMIENTAS.create') }}"
                                                 class="nav-link">
                                                 <i class="fas fa-plus-circle nav-icon"></i>
                                                 <p>Ingreso</p>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ route('sipork.admin.sipork.herramientas.index') }}"
+                                            <a href="{{ route('sipork.aprendiz.sipork.HERRAMIENTAS.index') }}"
                                                 class="nav-link">
                                                 <i class="fas fa-list nav-icon"></i>
                                                 <p>Listado</p>
@@ -346,14 +346,14 @@
                                             </a>
                                             <ul class="nav nav-treeview">
                                                 <li class="nav-item">
-                                                    <a href="{{ route('sipork.admin.sipork.uso_de_herramientas.create') }}"
+                                                    <a href="{{ route('sipork.aprendiz.sipork.USO_HERRAMIENTAS.create') }}"
                                                         class="nav-link">
                                                         <i class="fas fa-plus-circle nav-icon"></i>
                                                         <p>Ingreso</p>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a href="{{ route('sipork.admin.sipork.uso_de_herramientas.index') }}"
+                                                    <a href="{{ route('sipork.aprendiz.sipork.USO_HERRAMIENTAS.index') }}"
                                                         class="nav-link">
                                                         <i class="fas fa-list nav-icon"></i>
                                                         <p>Listado</p>
@@ -371,14 +371,14 @@
                                     </a>
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <a href="{{ route('sipork.admin.sipork.bodegas.create') }}"
+                                            <a href="{{ route('sipork.aprendiz.sipork.BODEGAS.create') }}"
                                                 class="nav-link">
                                                 <i class="fas fa-plus-circle nav-icon"></i>
                                                 <p>Ingreso</p>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ route('sipork.admin.sipork.bodegas.index') }}"
+                                            <a href="{{ route('sipork.aprendiz.sipork.BODEGAS.index') }}"
                                                 class="nav-link">
                                                 <i class="fas fa-list nav-icon"></i>
                                                 <p>Listado</p>
@@ -396,14 +396,14 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('sipork.admin.sipork.lotes.create') }}"
+                                    <a href="{{ route('sipork.aprendiz.sipork.LOTES.create') }}"
                                         class="nav-link">
                                         <i class="fas fa-plus-circle nav-icon"></i>
                                         <p>Ingreso</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('sipork.admin.sipork.lotes.index') }}"
+                                    <a href="{{ route('sipork.aprendiz.sipork.LOTES.index') }}"
                                         class="nav-link">
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Listado</p>
@@ -419,14 +419,14 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('sipork.admin.sipork.asignar_cerdos_a_lotes.create') }}"
+                                    <a href="{{ route('sipork.aprendiz.sipork.ASIGNAR_CERDOS.create') }}"
                                         class="nav-link">
                                         <i class="fas fa-plus-circle nav-icon"></i>
                                         <p>Ingreso</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('sipork.admin.sipork.asignar_cerdos_a_lotes.index') }}"
+                                    <a href="{{ route('sipork.aprendiz.sipork.ASIGNAR_CERDOS.index') }}"
                                         class="nav-link">
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Listado</p>
@@ -442,14 +442,14 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('sipork.admin.sipork.ciclos_reproductivos.create') }}"
+                                    <a href="{{ route('sipork.aprendiz.sipork.CICLOS_REPRODUCTIVOS.create') }}"
                                         class="nav-link">
                                         <i class="fas fa-plus-circle nav-icon"></i>
                                         <p>Ingreso</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('sipork.admin.sipork.ciclos_reproductivos.index') }}"
+                                    <a href="{{ route('sipork.aprendiz.sipork.CICLOS_REPRODUCTIVOS.index') }}"
                                         class="nav-link">
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Listado</p>

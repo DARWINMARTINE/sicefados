@@ -14,10 +14,6 @@ class ToolSiporkController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    // public function index()
-    // {
-    //     return view('sipork::index');
-    // }
 
     public function index()
     {
@@ -25,18 +21,26 @@ class ToolSiporkController extends Controller
         return view('sipork::admin.herramientas.index', compact('tools'));
     }
 
+    public function indexaprendiz()
+    {
+        $tools = ToolSipork::with('warehouse')->get();
+        return view('sipork::aprendiz.HERRAMIENTAS.index', compact('tools'));
+    }
+
     /**
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    // public function create()
-    // {
-    //     return view('sipork::create');
-    // }
     public function create()
     {
         $warehouses = WarehouseSipork::all();
         return view('sipork::admin.herramientas.create', compact('warehouses'));
+    }
+
+    public function createaprendiz()
+    {
+        $warehouses = WarehouseSipork::all();
+        return view('sipork::aprendiz.HERRAMIENTAS.create', compact('warehouses'));
     }
 
     /**
@@ -59,19 +63,36 @@ class ToolSiporkController extends Controller
         return redirect()->route('sipork.admin.sipork.herramientas.index')->with('success', 'Tool created successfully.');
     }
 
+    public function storeaprendiz(Request $request)
+    {
+        $request->validate([
+            'tool_name' => 'required|string|max:50',
+            'quantity' => 'required|integer|min:1',
+            'purchase_date' => 'required|date',
+            'unit_cost' => 'required|numeric|min:0',
+            'warehouse_id' => 'required|exists:warehouses_sipork,id_warehouse',
+        ]);
+
+        ToolSipork::create($request->all());
+
+        return redirect()->route('sipork.aprendiz.sipork.HERRAMIENTAS.index')->with('success', 'Tool created successfully.');
+    }
+
     /**
      * Show the specified resource.
      * @param int $id
      * @return Renderable
      */
-    // public function show($id)
-    // {
-    //     return view('sipork::show');
-    // }
     public function show($id)
     {
         $tool = ToolSipork::with('warehouse')->findOrFail($id);
         return view('sipork::admin.herramientas.show', compact('tool'));
+    }
+
+    public function showaprendiz($id)
+    {
+        $tool = ToolSipork::with('warehouse')->findOrFail($id);
+        return view('sipork::aprendiz.HERRAMIENTAS.show', compact('tool'));
     }
 
     /**
@@ -79,15 +100,18 @@ class ToolSiporkController extends Controller
      * @param int $id
      * @return Renderable
      */
-    // public function edit($id)
-    // {
-    //     return view('sipork::edit');
-    // }
     public function edit($id)
     {
         $tool = ToolSipork::with('warehouse')->findOrFail($id);
         $warehouses = WarehouseSipork::all();
         return view('sipork::admin.herramientas.edit', compact('tool', 'warehouses'));
+    }
+
+    public function editaprendiz($id)
+    {
+        $tool = ToolSipork::with('warehouse')->findOrFail($id);
+        $warehouses = WarehouseSipork::all();
+        return view('sipork::aprendiz.HERRAMIENTAS.edit', compact('tool', 'warehouses'));
     }
 
     /**
@@ -113,6 +137,23 @@ class ToolSiporkController extends Controller
         return redirect()->route('sipork.admin.sipork.herramientas.index')->with('success', 'Tool updated successfully.');
     }
 
+    public function updateaprendiz(Request $request, $id)
+    {
+        $tool = ToolSipork::findOrFail($id);
+
+        $request->validate([
+            'tool_name' => 'required|string|max:50',
+            'quantity' => 'required|integer|min:1',
+            'purchase_date' => 'required|date',
+            'unit_cost' => 'required|numeric|min:0',
+            'warehouse_id' => 'required|exists:warehouses_sipork,id_warehouse',
+        ]);
+
+        $tool->update($request->all());
+
+        return redirect()->route('sipork.aprendiz.sipork.HERRAMIENTAS.index')->with('success', 'Tool updated successfully.');
+    }
+
     /**
      * Remove the specified resource from storage.
      * @param int $id
@@ -124,5 +165,13 @@ class ToolSiporkController extends Controller
         $tool->delete();
 
         return redirect()->route('sipork.admin.sipork.herramientas.index')->with('success', 'Tool deleted successfully.');
+    }
+
+    public function destroyaprendiz($id)
+    {
+        $tool = ToolSipork::findOrFail($id);
+        $tool->delete();
+
+        return redirect()->route('sipork.aprendiz.sipork.HERRAMIENTAS.index')->with('success', 'Tool deleted successfully.');
     }
 }

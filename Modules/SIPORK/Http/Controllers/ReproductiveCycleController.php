@@ -20,6 +20,13 @@ class ReproductiveCycleController extends Controller
         return view('sipork::admin.ciclos_reproductivos.index', compact('reproductiveCycles'));
         
     }
+
+    public function indexaprendiz()
+    {
+        $reproductiveCycles = ReproductiveCycle::with('sow')->get();
+        return view('sipork::aprendiz.CICLOS_REPRODUCTIVOS.index', compact('reproductiveCycles'));
+        
+    }
     /**
      * Show the form for creating a new resource.
      * @return Renderable
@@ -28,6 +35,12 @@ class ReproductiveCycleController extends Controller
     {
         $pigs = Pig::where('gender', 'F')->get(); // Solo cerdas
         return view('sipork::admin.ciclos_reproductivos.create', compact('pigs'));
+    }
+
+    public function createaprendiz()
+    {
+        $pigs = Pig::where('gender', 'F')->get(); // Solo cerdas
+        return view('sipork::aprendiz.CICLOS_REPRODUCTIVOS.create', compact('pigs'));
     }
     /**
      * Store a newly created resource in storage.
@@ -48,6 +61,21 @@ class ReproductiveCycleController extends Controller
         ReproductiveCycle::create($request->all());
         return redirect()->route('sipork.admin.sipork.ciclos_reproductivos.index')->with('success', 'Reproductive Cycle created successfully.');
     }
+
+    public function storeaprendiz(Request $request)
+    {
+        $request->validate([
+            'sow_id' => 'required|exists:pigs,id_pig',
+            'service_date' => 'nullable|date',
+            'birth_date' => 'nullable|date',
+            'live_piglets' => 'nullable|integer|min:0',
+            'dead_piglets' => 'nullable|integer|min:0',
+            'lactation_end_date' => 'nullable|date',
+        ]);
+
+        ReproductiveCycle::create($request->all());
+        return redirect()->route('sipork.aprendiz.sipork.CICLOS_REPRODUCTIVOS.index')->with('success', 'Reproductive Cycle created successfully.');
+    }
     /**
      * Show the specified resource.
      * @param int $id
@@ -57,6 +85,12 @@ class ReproductiveCycleController extends Controller
     {
         $reproductiveCycle = ReproductiveCycle::with('sow')->findOrFail($id);
         return view('sipork::admin.ciclos_reproductivos.show', compact('reproductiveCycle'));
+    }
+
+    public function showaprendiz($id)
+    {
+        $reproductiveCycle = ReproductiveCycle::with('sow')->findOrFail($id);
+        return view('sipork::aprendiz.CICLOS_REPRODUCTIVOS.show', compact('reproductiveCycle'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -69,6 +103,13 @@ class ReproductiveCycleController extends Controller
     $reproductiveCycle = ReproductiveCycle::findOrFail($id);
     $pigs = Pig::where('gender', 'F')->get();
     return view('sipork::admin.ciclos_reproductivos.edit', compact('reproductiveCycle', 'pigs'));
+}
+
+    public function editaprendiz($id)
+{
+    $reproductiveCycle = ReproductiveCycle::findOrFail($id);
+    $pigs = Pig::where('gender', 'F')->get();
+    return view('sipork::aprendiz.CICLOS_REPRODUCTIVOS.edit', compact('reproductiveCycle', 'pigs'));
 }
     /**
      * Update the specified resource in storage.
@@ -91,6 +132,22 @@ public function update(Request $request, $id)
         $reproductiveCycle->update($request->all());
         return redirect()->route('sipork.admin.sipork.ciclos_reproductivos.index')->with('success', 'Reproductive Cycle updated successfully.');
     }
+
+public function updateaprendiz(Request $request, $id)
+    {
+        $request->validate([
+            'sow_id' => 'required|exists:pigs,id_pig',
+            'service_date' => 'nullable|date',
+            'birth_date' => 'nullable|date',
+            'live_piglets' => 'nullable|integer|min:0',
+            'dead_piglets' => 'nullable|integer|min:0',
+            'lactation_end_date' => 'nullable|date',
+        ]);
+
+        $reproductiveCycle = ReproductiveCycle::findOrFail($id);
+        $reproductiveCycle->update($request->all());
+        return redirect()->route('sipork.aprendiz.sipork.CICLOS_REPRODUCTIVOS.index')->with('success', 'Reproductive Cycle updated successfully.');
+    }
     /**
      * Remove the specified resource from storage.
      * @param int $id
@@ -101,5 +158,12 @@ public function update(Request $request, $id)
         $reproductiveCycle = ReproductiveCycle::findOrFail($id);
         $reproductiveCycle->delete();
         return redirect()->route('sipork.admin.sipork.ciclos_reproductivos.index')->with('success', 'Reproductive Cycle deleted successfully.');
+    }
+
+    public function destroyaprendiz($id)
+    {
+        $reproductiveCycle = ReproductiveCycle::findOrFail($id);
+        $reproductiveCycle->delete();
+        return redirect()->route('sipork.aprendiz.sipork.CICLOS_REPRODUCTIVOS.index')->with('success', 'Reproductive Cycle deleted successfully.');
     }
 }

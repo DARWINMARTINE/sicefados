@@ -13,27 +13,30 @@ class WarehouseSiporkController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    // public function index()
-    // {
-    //     return view('sipork::index');
-    // }
     public function index()
     {
         $warehouses = WarehouseSipork::all();
         return view('sipork::admin.bodegas.index', compact('warehouses'));
     }
 
+    public function indexaprendiz()
+    {
+        $warehouses = WarehouseSipork::all();
+        return view('sipork::aprendiz.BODEGAS.index', compact('warehouses'));
+    }
+
     /**
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    // public function create()
-    // {
-    //     return view('sipork::create');
-    // }
     public function create()
     {
         return view('sipork::admin.bodegas.create');
+    }
+
+    public function createaprendiz()
+    {
+        return view('sipork::aprendiz.BODEGAS.create');
     }
 
     /**
@@ -41,10 +44,6 @@ class WarehouseSiporkController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
     public function store(Request $request)
     {
         $request->validate([
@@ -58,19 +57,34 @@ class WarehouseSiporkController extends Controller
         return redirect()->route('sipork.admin.sipork.bodegas.index')->with('success', 'Warehouse created successfully.');
     }
 
+    public function storeaprendiz(Request $request)
+    {
+        $request->validate([
+            'warehouse_name' => 'required|string|max:50',
+            'location' => 'required|string|max:100',
+            'capacity' => 'required|numeric|min:0',
+        ]);
+
+        WarehouseSipork::create($request->all());
+
+        return redirect()->route('sipork.aprendiz.sipork.BODEGAS.index')->with('success', 'Warehouse created successfully.');
+    }
+
     /**
      * Show the specified resource.
      * @param int $id
      * @return Renderable
      */
-    // public function show($id)
-    // {
-    //     return view('sipork::show');
-    // }
     public function show($id)
     {
         $warehouse = WarehouseSipork::findOrFail($id);
         return view('sipork::admin.bodegas.show', compact('warehouse'));
+    }
+
+    public function showaprendiz($id)
+    {
+        $warehouse = WarehouseSipork::findOrFail($id);
+        return view('sipork::aprendiz.BODEGAS.show', compact('warehouse'));
     }
 
     /**
@@ -83,8 +97,12 @@ class WarehouseSiporkController extends Controller
         $warehouse = WarehouseSipork::findOrFail($id);
         return view('sipork::admin.bodegas.edit', compact('warehouse'));
     }
-    
 
+    public function editaprendiz($id)
+    {
+        $warehouse = WarehouseSipork::findOrFail($id);
+        return view('sipork::aprendiz.BODEGAS.edit', compact('warehouse'));
+    }
     /**
      * Update the specified resource in storage.
      * @param Request $request
@@ -105,6 +123,20 @@ class WarehouseSiporkController extends Controller
         return redirect()->route('sipork.admin.sipork.bodegas.index')->with('success', 'Warehouse updated successfully.');
     }
 
+    public function updateaprendiz(Request $request, $id)
+    {
+        $request->validate([
+            'warehouse_name' => 'required|string|max:50',
+            'location' => 'required|string|max:100',
+            'capacity' => 'required|numeric|min:0',
+        ]);
+
+        $warehouse = WarehouseSipork::findOrFail($id);
+        $warehouse->update($request->all());
+
+        return redirect()->route('sipork.aprendiz.sipork.BODEGAS.index')->with('success', 'Warehouse updated successfully.');
+    }
+
     /**
      * Remove the specified resource from storage.
      * @param int $id
@@ -116,5 +148,13 @@ class WarehouseSiporkController extends Controller
         $warehouse->delete();
 
         return redirect()->route('sipork.admin.sipork.bodegas.index')->with('success', 'Warehouse deleted successfully.');
+    }
+
+    public function destroyaprendiz($id)
+    {
+        $warehouse = WarehouseSipork::findOrFail($id);
+        $warehouse->delete();
+
+        return redirect()->route('sipork.aprendiz.sipork.BODEGAS.index')->with('success', 'Warehouse deleted successfully.');
     }
 }

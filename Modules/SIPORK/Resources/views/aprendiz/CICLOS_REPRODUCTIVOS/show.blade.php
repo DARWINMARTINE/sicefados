@@ -1,4 +1,4 @@
-@extends('sipork::layouts.master')
+@extends('sipork::layouts.masterAprendiz')
 
 @section('content')
 <br><br><br>
@@ -17,7 +17,7 @@
                     <p><strong>Dead Piglets:</strong> {{ $reproductiveCycle->dead_piglets ?? 'N/A' }}</p>
                     <p><strong>Lactation End Date:</strong> {{ $reproductiveCycle->lactation_end_date ?? 'N/A' }}</p>
 
-                    <a href="{{ route('sipork.admin.sipork.ciclos_reproductivos.index') }}" class="btn btn-primary">Back to List</a>
+                    <a href="{{ route('sipork.aprendiz.sipork.CICLOS_REPRODUCTIVOS.index') }}" class="btn btn-primary">Back to List</a>
                 </div>
             </div>
         </div>
