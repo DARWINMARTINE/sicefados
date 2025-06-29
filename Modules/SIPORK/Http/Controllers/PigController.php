@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\SIPORK\Entities\Pig;
+use Barryvdh\DomPDF\Facade\Pdf; // Import the PDF facade
 
 class PigController extends Controller
 {
@@ -15,8 +16,8 @@ class PigController extends Controller
      */
     public function index()
     {
-        $pigs = pig::all(); // Fetch all pigs from the database
-        return view('sipork::admin.gestion_de_cerdos.index', ['pigs' => $pigs]);
+        $pigs = Pig::paginate(10); // 10 registros por página
+        return view('sipork::admin.gestion_de_cerdos.index', compact('pigs'));
     }
 
     public function indexlider()
@@ -180,4 +181,11 @@ class PigController extends Controller
 
         return redirect()->route('sipork.liderDeUnidad.sipork.gestion_de_cerdos.index')->with('success', 'Pig deleted successfully.');
     }
+
+    public function exportPdf()
+{
+    $pigs = \Modules\SIPORK\Entities\Pig::all(); // Ajusta el namespace si es necesario
+    $pdf = Pdf::loadView('sipork::admin.gestion_de_cerdos.pdf', compact('pigs'));
+    return $pdf->download('lista_cerdos.pdf');
+}
 }

@@ -37,25 +37,34 @@
 
 <!-- Navbar -->
 <nav class="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" class="flex items-center text-white font-bold text-2xl tracking-tight">
-            <img src="{{ asset('images/sipork.png') }}" alt="SIPORK" class="w-9 h-9 mr-3">
-            SIPORK
-        </a>
-        <div class="hidden md:flex space-x-6 text-sm font-semibold">
-            @auth
-                @if(checkRol('sipork.admin'))
-                    <a href="{{ route('sipork.admin.welcome') }}" class="hover:text-green-400 transition">Administrador</a>
-                @endif
-                @if(checkRol('sipork.liderDeUnidad'))
-                    <a href="{{ route('sipork.liderDeUnidad.panelLider') }}" class="hover:text-green-400 transition">Líder de Unidad</a>
-                @endif
-                @if(checkRol('sipork.aprendiz'))
-                    <a href="{{ route('sipork.aprendiz.panelAprendiz') }}" class="hover:text-green-400 transition">Aprendiz</a>
-                @endif
-            @endauth
-        </div>
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center">
+      <a href="#" class="flex items-center text-white font-bold text-2xl tracking-tight">
+        <img src="{{ asset('images/sipork.png') }}" alt="SIPORK" class="w-9 h-9 mr-3">
+        SIPORK
+      </a>
+      <a href="{{ route('sipork.desarrolladores') }}" class="ml-4 hover:text-green-400 transition text-base font-normal flex items-center">
+        <!-- Icono de usuario/desarrollador -->
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 0 0-8 0v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+        </svg>
+        Desarrolladores
+      </a>
     </div>
+    <div class="hidden md:flex space-x-6 text-sm font-semibold">
+      @auth
+        @if(checkRol('sipork.admin'))
+          <a href="{{ route('sipork.admin.welcome') }}" class="hover:text-green-400 transition">Administrador</a>
+        @endif
+        @if(checkRol('sipork.liderDeUnidad'))
+          <a href="{{ route('sipork.liderDeUnidad.panelLider') }}" class="hover:text-green-400 transition">Líder de Unidad</a>
+        @endif
+        @if(checkRol('sipork.aprendiz'))
+          <a href="{{ route('sipork.aprendiz.panelAprendiz') }}" class="hover:text-green-400 transition">Aprendiz</a>
+        @endif
+      @endauth
+    </div>
+  </div>
 </nav>
 
    <!-- Contenido principal -->

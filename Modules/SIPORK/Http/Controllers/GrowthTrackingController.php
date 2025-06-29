@@ -115,4 +115,19 @@ class GrowthTrackingController extends Controller
         $growthTracking->delete();
         return redirect()->route('sipork.admin.sipork.seguimiento_del_crecimiento.index')->with('success', 'Growth Tracking deleted successfully.');
     }
+
+    public function showChart($id_pig)
+    {
+        $pig = Pig::with('growthTracking')->findOrFail($id_pig);
+        $trackings = $pig->growthTracking->sortBy('measurement_date');
+
+        // Prepara los datos para la gráfica
+        $labels = $trackings->pluck('measurement_date')->map(function($d) {
+            return \Carbon\Carbon::parse($d)->format('d/m/Y');
+        })->values();
+
+        $weights = $trackings->pluck('weight')->values();
+
+        return view('sipork::admin.seguimiento_del_crecimiento.growth_chart', compact('pig', 'trackings', 'labels', 'weights'));
+    }
 }

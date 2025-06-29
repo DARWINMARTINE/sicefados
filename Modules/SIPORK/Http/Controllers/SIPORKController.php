@@ -36,6 +36,10 @@ class SIPORKController extends Controller
     {
         return view('sipork::panelAprendiz');
     }
+    public function devs()
+    {
+        return view('sipork::desarrolladores.index');
+    }
     /**
      * Show the form for creating a new resource.
      * @return Renderable

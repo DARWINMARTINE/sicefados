@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use Modules\SIPORK\Http\Controllers\PigLotController;
+use Modules\SIPORK\Http\Controllers\PigController;
+use Modules\SIPORK\Http\Controllers\GrowthTrackingController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +22,7 @@ Route::middleware(['lang'])->group(function () {
         Route::get('/aprendiz/panelAprendiz', 'SIPORKController@aprendiz')->name('sipork.aprendiz.panelAprendiz');
         });
     });
+Route::get('/desarrolladores', 'SIPORKController@devs')->name('sipork.desarrolladores');
 
 // rutas para las funciones de los cerdos
 Route::middleware(['auth'])->group(function () {
@@ -49,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/seguimiento_del_crecimiento/{id}', 'GrowthTrackingController@update')->name('sipork.admin.sipork.seguimiento_del_crecimiento.update');
             Route::get('/seguimiento_del_crecimiento/{id}', 'GrowthTrackingController@show')->name('sipork.admin.sipork.seguimiento_del_crecimiento.show');
             Route::delete('/seguimiento_del_crecimiento/{id}', 'GrowthTrackingController@destroy')->name('sipork.admin.sipork.seguimiento_del_crecimiento.destroy');
+            Route::get('seguimiento_del_crecimiento/grafica/{id_pig}', [GrowthTrackingController::class, 'showChart'])->name('sipork.admin.sipork.seguimiento_del_crecimiento.chart');
             // rutas para los registros de salud
             Route::get('/registros_de_salud', 'HealthRecordController@index')->name('sipork.admin.sipork.registros_de_salud.index');
             Route::get('/registros_de_salud/create', 'HealthRecordController@create')->name('sipork.admin.sipork.registros_de_salud.create');
@@ -298,8 +302,10 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/CICLOS_REPRODUCTIVOS/{id}', 'ReproductiveCycleController@showaprendiz')->name('sipork.aprendiz.sipork.CICLOS_REPRODUCTIVOS.show');
             Route::delete('/CICLOS_REPRODUCTIVOS/{id}', 'ReproductiveCycleController@destroyaprendiz')->name('sipork.aprendiz.sipork.CICLOS_REPRODUCTIVOS.destroy');
     
-
-            // rutas para el lenguaje
+            // ruta para generar PDF
+            Route::get('admin/sipork/gestion_de_cerdos/pdf', [PigController::class, 'exportPdf'])->name('sipork.admin.sipork.gestion_de_cerdos.pdf');
+            
+            // rutas para el lenguaje           
             Route::get('/set-language/{locale}', 'LanguageController@setLanguage')->name('sipork.setLanguage');
         });
     });
