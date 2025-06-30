@@ -16,7 +16,7 @@ class GrowthTrackingController extends Controller
      */
     public function index()
     {
-        $growthTrackings = GrowthTracking::with('pig')->get();
+        $growthTrackings = GrowthTracking::with('pig')->paginate(10);
         return view('sipork::admin.seguimiento_del_crecimiento.index', compact('growthTrackings'));
     }
 

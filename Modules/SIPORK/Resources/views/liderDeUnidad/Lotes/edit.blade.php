@@ -1,4 +1,4 @@
-@extends('sipork::layouts.master')
+@extends('sipork::layouts.masterLiderDeUnidad')
 
 @section('title', 'Edit Lot')
 
@@ -26,7 +26,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('sipork.admin.sipork.lotes.index') }}" class="text-primary font-weight-bold">
+                            <a href="{{ route('sipork.liderDeUnidad.sipork.Lotes.index') }}" class="text-primary font-weight-bold">
                                 <i class="fas fa-layer-group"></i> Lots
                             </a>
                         </li>
@@ -50,7 +50,7 @@
                             <i class="fas fa-edit"></i> Edit Lot Details
                         </h5>
                     </div>
-                    <form action="{{ route('sipork.admin.sipork.lotes.update', $lot->id_lot) }}" method="POST">
+                    <form action="{{ route('sipork.liderDeUnidad.sipork.Lotes.update', $lot->id_lot) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-body">
@@ -113,7 +113,7 @@
                         </div>
 
                         <div class="card-footer bg-light d-flex justify-content-end">
-                            <a href="{{ route('sipork.admin.sipork.lotes.index') }}" class="btn btn-secondary mr-2">
+                            <a href="{{ route('sipork.liderDeUnidad.sipork.Lotes.index') }}" class="btn btn-secondary mr-2">
                                 <i class="fas fa-times"></i> Cancel
                             </a>
                             <button type="submit" class="btn btn-primary">

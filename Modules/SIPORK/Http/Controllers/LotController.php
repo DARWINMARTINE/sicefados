@@ -19,6 +19,12 @@ class LotController extends Controller
         return view('sipork::admin.lotes.index', compact('lots'));
     }
 
+    public function indexlider()
+    {
+        $lots = Lot::all();
+        return view('sipork::liderDeUnidad.Lotes.index', compact('lots'));
+    }
+
     public function indexaprendiz()
     {
         $lots = Lot::all();
@@ -32,6 +38,11 @@ class LotController extends Controller
     public function create()
     {
         return view('sipork::admin.lotes.create');
+    }
+
+    public function createlider()
+    {
+        return view('sipork::liderDeUnidad.Lotes.create');
     }
 
     public function createaprendiz()
@@ -54,6 +65,18 @@ class LotController extends Controller
 
         Lot::create($request->all());
         return redirect()->route('sipork.admin.sipork.lotes.index')->with('success', 'Lot created successfully.');
+    }
+
+    public function storelider(Request $request)
+    {
+        $request->validate([
+            'lot_name' => 'required|string|max:255',
+            'creation_date' => 'required|date',
+            'status' => 'required|boolean',
+        ]);
+
+        Lot::create($request->all());
+        return redirect()->route('sipork.liderDeUnidad.sipork.Lotes.index')->with('success', 'Lot created successfully.');
     }
 
     public function storeaprendiz(Request $request)
@@ -79,6 +102,12 @@ class LotController extends Controller
         return view('sipork::admin.lotes.show', compact('lot'));
     }
 
+    public function showlider($id)
+    {
+        $lot = Lot::findOrFail($id);
+        return view('sipork::liderDeUnidad.Lotes.show', compact('lot'));
+    }
+
     public function showaprendiz($id)
     {
         $lot = Lot::findOrFail($id);
@@ -94,6 +123,12 @@ class LotController extends Controller
     {
         $lot = Lot::findOrFail($id);
         return view('sipork::admin.lotes.edit', compact('lot'));
+    }
+
+    public function editlider($id)
+    {
+        $lot = Lot::findOrFail($id);
+        return view('sipork::liderDeUnidad.Lotes.edit', compact('lot'));
     }
 
     public function editaprendiz($id)
@@ -121,6 +156,19 @@ class LotController extends Controller
         return redirect()->route('sipork.admin.sipork.lotes.index')->with('success', 'Lot updated successfully.');
     }
 
+    public function updatelider(Request $request, $id)
+    {
+        $request->validate([
+            'lot_name' => 'required|string|max:255',
+            'creation_date' => 'required|date',
+            'status' => 'required|boolean',
+        ]);
+
+        $lot = Lot::findOrFail($id);
+        $lot->update($request->all());
+        return redirect()->route('sipork.liderDeUnidad.sipork.Lotes.index')->with('success', 'Lot updated successfully.');
+    }
+
     public function updateaprendiz(Request $request, $id)
     {
         $request->validate([
@@ -144,6 +192,13 @@ class LotController extends Controller
         $lot = Lot::findOrFail($id);
         $lot->delete();
         return redirect()->route('sipork.admin.sipork.lotes.index')->with('success', 'Lot deleted successfully.');
+    }
+
+    public function destroylider($id)
+    {
+        $lot = Lot::findOrFail($id);
+        $lot->delete();
+        return redirect()->route('sipork.liderDeUnidad.sipork.Lotes.index')->with('success', 'Lot deleted successfully.');
     }
 
     public function destroyaprendiz($id)

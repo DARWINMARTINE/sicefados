@@ -1,4 +1,4 @@
-@extends('sipork::layouts.master')
+@extends('sipork::layouts.masterLiderDeUnidad')
 
 @section('title', 'Lots')
 
@@ -23,7 +23,7 @@
 
             <div class="d-flex justify-content-between align-items-center mb-3 mt-4">
                 <h4 class="mb-0"><i class="fas fa-layer-group mr-2"></i> Lista de Lotes</h4>
-                <a href="{{ route('sipork.admin.sipork.lotes.create') }}" class="btn btn-primary shadow-sm">
+                <a href="{{ route('sipork.liderDeUnidad.sipork.Lotes.create') }}" class="btn btn-primary shadow-sm">
                     <i class="fas fa-plus mr-1"></i> Nuevo Lote
                 </a>
             </div>
@@ -53,19 +53,19 @@
                                 @endif
                             </td>
                             <td class="text-center align-middle">
-                                <a href="{{ route('sipork.admin.sipork.lotes.show', $lot->id_lot) }}" class="text-info"
+                                <a href="{{ route('sipork.liderDeUnidad.sipork.Lotes.show', $lot->id_lot) }}" class="text-info"
                                     style="font-size: 1.5rem; transition: transform 0.3s ease, color 0.3s ease; color: #17a2b8;"
                                     onmouseover="this.style.transform='scale(1.2)'; this.style.color='darkcyan';"
                                     onmouseout="this.style.transform='scale(1)'; this.style.color='#17a2b8';">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <a href="{{ route('sipork.admin.sipork.lotes.edit', $lot->id_lot) }}" class="text-warning"
+                                <a href="{{ route('sipork.liderDeUnidad.sipork.Lotes.edit', $lot->id_lot) }}" class="text-warning"
                                     style="font-size: 1.5rem; transition: transform 0.3s ease, color 0.3s ease; color: #ffc107;"
                                     onmouseover="this.style.transform='scale(1.2)'; this.style.color='orange';"
                                     onmouseout="this.style.transform='scale(1)'; this.style.color='#ffc107';">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="{{ route('sipork.admin.sipork.lotes.destroy', $lot->id_lot) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete(this);">
+                                <form action="{{ route('sipork.liderDeUnidad.sipork.Lotes.destroy', $lot->id_lot) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete(this);">
                                     @csrf
                                     @method('DELETE')
                                     <button type="button" style="border: none; background: none; font-size: 1.5rem; transition: transform 0.3s ease, color 0.3s ease; color: red;"

@@ -17,7 +17,7 @@ class ToolPigController extends Controller
      */
     public function index()
     {
-        $toolUsages = ToolPig::with(['tool', 'pig'])->get();
+        $toolUsages = ToolPig::with(['tool', 'pig'])->paginate(10);
         return view('sipork::admin.uso_de_herramientas.index', compact('toolUsages'));
     }
 

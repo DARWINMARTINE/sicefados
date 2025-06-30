@@ -16,13 +16,9 @@ class SanitaryOutbreakController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    // public function index()
-    // {
-    //     return view('sipork::index');
-    // }
     public function index()
     {
-        $sanitaryOutbreaks = SanitaryOutbreak::with('lot')->get();
+        $sanitaryOutbreaks = SanitaryOutbreak::with('lot')->paginate(10);
         return view('sipork::admin.brotes_sanitarios.index', compact('sanitaryOutbreaks'));
     }
     

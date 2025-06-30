@@ -83,7 +83,7 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
                         <i class="fas fa-search"></i>
                     </a>
@@ -103,9 +103,9 @@
                             </div>
                         </form>
                     </div>
-                </li>
+                </li> -->
                 <!-- Language Switcher -->
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-globe"></i>
@@ -114,7 +114,7 @@
                         <a href="{{ url('sipork/set-language/en') }}" class="dropdown-item">English</a>
                         <a href="{{ url('sipork/set-language/es') }}" class="dropdown-item">Español</a>
                     </div>
-                </li>
+                </li> -->
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
                     @auth

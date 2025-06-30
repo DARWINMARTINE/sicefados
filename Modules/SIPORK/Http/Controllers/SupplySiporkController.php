@@ -16,7 +16,7 @@ class SupplySiporkController extends Controller
      */
     public function index()
     {
-        $supplies = SupplySipork::with('warehouse')->get();
+        $supplies = SupplySipork::with('warehouse')->paginate(10);
         return view('sipork::admin.suministros.index', compact('supplies'));
     }
 

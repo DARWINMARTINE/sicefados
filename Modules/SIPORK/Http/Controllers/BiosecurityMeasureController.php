@@ -17,7 +17,7 @@ class BiosecurityMeasureController extends Controller
      */
     public function index()
     {
-        $measures = BiosecurityMeasure::with(['cost', 'lot'])->get();
+        $measures = BiosecurityMeasure::with(['cost', 'lot'])->paginate(10);
         return view('sipork::admin.medidas_de_bioseguridad.index', compact('measures'));
     }
 

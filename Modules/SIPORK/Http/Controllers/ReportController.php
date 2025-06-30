@@ -16,7 +16,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $reports = Report::with('lot')->get();
+        $reports = Report::with('lot')->paginate(10);
         return view('sipork::admin.reportes.index', compact('reports'));
     }
     public function indexlider()

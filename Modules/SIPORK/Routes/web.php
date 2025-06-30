@@ -185,6 +185,14 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/liderDeUnidad/store', 'PigController@storelider')->name('sipork.liderDeUnidad.sipork.gestion_de_cerdos.store');
             Route::put('/liderDeUnidad/{id}', 'PigController@updatelider')->name('sipork.liderDeUnidad.sipork.gestion_de_cerdos.update');
             Route::delete('/liderDeUnidad/{id}', 'PigController@destroylider')->name('sipork.liderDeUnidad.sipork.gestion_de_cerdos.destroy');
+            // rutas para los Lotes
+            Route::get('/Lotes', 'LotController@indexlider')->name('sipork.liderDeUnidad.sipork.Lotes.index');
+            Route::get('/Lotes/create', 'LotController@createlider')->name('sipork.liderDeUnidad.sipork.Lotes.create');
+            Route::post('/Lotes/store', 'LotController@storelider')->name('sipork.liderDeUnidad.sipork.Lotes.store');
+            Route::get('/Lotes/{id}/edit', 'LotController@editlider')->name('sipork.liderDeUnidad.sipork.Lotes.edit');
+            Route::put('/Lotes/{id}', 'LotController@updatelider')->name('sipork.liderDeUnidad.sipork.Lotes.update');
+            Route::get('/Lotes/{id}', 'LotController@showlider')->name('sipork.liderDeUnidad.sipork.Lotes.show');
+            Route::delete('/Lotes/{id}', 'LotController@destroylider')->name('sipork.liderDeUnidad.sipork.Lotes.destroy');
             // rutas para condiciones ambientales
             Route::get('/condiciones-ambientales', 'EnvironmentalConditionController@indexlider')->name('sipork.liderDeUnidad.sipork.condiciones-ambientales.index');
             Route::get('/condiciones-ambientales/create', 'EnvironmentalConditionController@createlider')->name('sipork.liderDeUnidad.sipork.condiciones-ambientales.create');
@@ -304,6 +312,8 @@ Route::middleware(['auth'])->group(function () {
     
             // ruta para generar PDF
             Route::get('admin/sipork/gestion_de_cerdos/pdf', [PigController::class, 'exportPdf'])->name('sipork.admin.sipork.gestion_de_cerdos.pdf');
+            Route::get('liderDeUnidad/sipork/gestion_de_cerdos/pdf', [PigController::class, 'exportPdfLider'])->name('sipork.liderDeUnidad.sipork.gestion_de_cerdos.pdf');
+
             
             // rutas para el lenguaje           
             Route::get('/set-language/{locale}', 'LanguageController@setLanguage')->name('sipork.setLanguage');

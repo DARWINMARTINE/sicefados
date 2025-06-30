@@ -17,7 +17,7 @@ class HealthRecordController extends Controller
      */
     public function index()
     {
-        $healthRecords = HealthRecord::with('pig', 'cost')->get();
+        $healthRecords = HealthRecord::with('pig', 'cost')->paginate(10);
         return view('sipork::admin.registros_de_salud.index', compact('healthRecords'));
     }
 

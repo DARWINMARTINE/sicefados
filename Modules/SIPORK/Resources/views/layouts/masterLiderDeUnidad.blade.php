@@ -83,7 +83,7 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
                         <i class="fas fa-search"></i>
                     </a>
@@ -103,9 +103,9 @@
                             </div>
                         </form>
                     </div>
-                </li>
+                </li> -->
                 <!-- Language Switcher -->
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-globe"></i>
@@ -114,7 +114,7 @@
                         <a href="{{ url('sipork/set-language/en') }}" class="dropdown-item">English</a>
                         <a href="{{ url('sipork/set-language/es') }}" class="dropdown-item">Español</a>
                     </div>
-                </li>
+                </li> -->
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
                     @auth
@@ -236,6 +236,29 @@
                                     <a href="{{ route('sipork.liderDeUnidad.sipork.gestion_de_cerdos.index') }}" class="nav-link">
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Listado de Cerdos</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Gestión de lotes -->
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link text-pink">
+                                <i class="nav-icon fas fa-layer-group"></i>&nbsp;
+                                <p>Lotes<i class="right fas fa-angle-left"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('sipork.liderDeUnidad.sipork.Lotes.create') }}"
+                                        class="nav-link">
+                                        <i class="fas fa-plus-circle nav-icon"></i>
+                                        <p>Ingreso</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('sipork.liderDeUnidad.sipork.Lotes.index') }}"
+                                        class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Listado</p>
                                     </a>
                                 </li>
                             </ul>

@@ -1,25 +1,32 @@
 @extends('sipork::layouts.master')
 
 @section('content')
-<br><br><br>
 <style>
-    .form-card {
-        background: #fefae0; /* Light beige, farm-inspired */
-        border-radius: 15px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-        border: 1px solid #588157; /* Green border for farm theme */
-        transition: transform 0.3s ease;
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        min-height: 100vh;
+        padding-left: 25%; /* Increased from 14% to shift further right */
+        background-color: #f4f4f4;
     }
-    .form-card:hover {
-        transform: translateY(-5px);
+    .form-card {
+        transition: all 0.3s ease;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
     .form-card .card-header {
-        background: linear-gradient(90deg, #3a5a40, #588157); /* Earthy green gradient */
-        color: #fff;
-        border-radius: 15px 15px 0 0;
+        background: linear-gradient(90deg, #007bff, #0056b3);
+        color: white;
+        border-radius: 10px 10px 0 0;
         padding: 1.5rem;
-        font-size: 1.5rem;
-        font-weight: 600;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .form-group {
         position: relative;
@@ -31,8 +38,8 @@
         transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .form-control:focus {
-        border-color: #588157;
-        box-shadow: 0 0 8px rgba(88, 129, 87, 0.2);
+        border-color: #007bff;
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
     }
     .floating-label {
         position: absolute;
@@ -47,8 +54,8 @@
     .form-control:focus + .floating-label {
         top: 0;
         font-size: 0.85rem;
-        color: #3a5a40;
-        background: #fefae0;
+        color: #007bff;
+        background: white;
         padding: 0 0.2rem;
     }
     .invalid-feedback {
@@ -56,25 +63,22 @@
         color: #dc3545;
     }
     .btn-primary {
-        background: #588157;
+        background: #007bff;
         border: none;
         padding: 0.75rem 2rem;
         border-radius: 8px;
         transition: background 0.3s ease, transform 0.2s ease;
     }
     .btn-primary:hover {
-        background: #3a5a40;
+        background: #0056b3;
         transform: translateY(-2px);
     }
     .btn-secondary {
-        background: #6c757d;
-        border: none;
-        padding: 0.75rem 2rem;
         border-radius: 8px;
+        padding: 0.75rem 2rem;
         transition: background 0.3s ease, transform 0.2s ease;
     }
     .btn-secondary:hover {
-        background: #5a6268;
         transform: translateY(-2px);
     }
     .form-icon {
@@ -84,14 +88,12 @@
         transform: translateY(-50%);
         color: #6c757d;
     }
-    textarea.form-control {
-        min-height: 100px;
-        resize: vertical;
-    }
     @media (max-width: 768px) {
+        body {
+            padding: 1rem; /* Reset padding on mobile to avoid excessive offset */
+        }
         .form-card {
             box-shadow: none;
-            border: none;
         }
         .form-group {
             margin-bottom: 1.25rem;
@@ -99,67 +101,70 @@
     }
 </style>
 
-<section class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
-            <div class="card form-card animate__animated animate__fadeIn">
-                <div class="card-header text-center">
-                    Crear Seguimiento del Crecimiento
-                </div>
-                <div class="card-body">
-                    <form method="POST" action="{{ route('sipork.admin.sipork.seguimiento_del_crecimiento.store') }}">
+<section class="content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8">
+                <div class="card form-card animate__animated animate__fadeIn">
+                    <div class="card-header">
+                        <h3 class="card-title mb-0">Crear Seguimiento del Crecimiento</h3>
+                    </div>
+                    <form action="{{ route('sipork.admin.sipork.seguimiento_del_crecimiento.store') }}" method="POST">
                         @csrf
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- Pig -->
+                                <div class="col-md-6 form-group">
+                                    <select name="pig_id" id="pig_id" class="form-control @error('pig_id') is-invalid @enderror" required>
+                                        <option value="" disabled selected>Seleccionar Cerdo</option>
+                                        @foreach ($pigs as $pig)
+                                            <option value="{{ $pig->id_pig }}" {{ old('pig_id') == $pig->id_pig ? 'selected' : '' }}>
+                                                {{ $pig->id_pig }} ({{ $pig->breed }})
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <label for="pig_id" class="floating-label">Cerdo <span class="text-danger">*</span></label>
+                                    <span class="form-icon"><i class="fas fa-piggy-bank"></i></span>
+                                    @error('pig_id')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
 
-                        <!-- Pig -->
-                        <div class="form-group">
-                            <select name="pig_id" id="pig_id" class="form-control @error('pig_id') is-invalid @enderror">
-                                <option value="" disabled selected>Seleccionar Cerdo</option>
-                                @foreach ($pigs as $pig)
-                                    <option value="{{ $pig->id_pig }}" {{ old('pig_id') == $pig->id_pig ? 'selected' : '' }}>
-                                        {{ $pig->id_pig }} ({{ $pig->breed }})
-                                    </option>
-                                @endforeach
-                            </select>
-                            <label for="pig_id" class="floating-label">Cerdo</label>
-                            <span class="form-icon"><i class="fas fa-piggy-bank"></i></span>
-                            @error('pig_id')
-                                <span class="invalid-feedback">{{ $message }}</span>
-                            @enderror
+                                <!-- Measurement Date -->
+                                <div class="col-md-6 form-group">
+                                    <input type="date" name="measurement_date" id="measurement_date" class="form-control @error('measurement_date') is-invalid @enderror" value="{{ old('measurement_date') }}" required placeholder=" ">
+                                    <label for="measurement_date" class="floating-label">Fecha de Medición <span class="text-danger">*</span></label>
+                                    <span class="form-icon"><i class="fas fa-calendar-alt"></i></span>
+                                    @error('measurement_date')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <!-- Weight -->
+                                <div class="col-md-6 form-group">
+                                    <input type="number" step="0.01" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror" value="{{ old('weight') }}" required placeholder=" ">
+                                    <label for="weight" class="floating-label">Peso (kg) <span class="text-danger">*</span></label>
+                                    <span class="form-icon"><i class="fas fa-weight"></i></span>
+                                    @error('weight')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <!-- Observations -->
+                                <div class="col-md-6 form-group">
+                                    <textarea name="observations" id="observations" class="form-control @error('observations') is-invalid @enderror" placeholder=" ">{{ old('observations') }}</textarea>
+                                    <label for="observations" class="floating-label">Observaciones</label>
+                                    <span class="form-icon"><i class="fas fa-sticky-note"></i></span>
+                                    @error('observations')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Measurement Date -->
-                        <div class="form-group">
-                            <input type="date" name="measurement_date" id="measurement_date" class="form-control @error('measurement_date') is-invalid @enderror" value="{{ old('measurement_date') }}" placeholder=" ">
-                            <label for="measurement_date" class="floating-label">Fecha de Medición</label>
-                            <span class="form-icon"><i class="fas fa-calendar-alt"></i></span>
-                            @error('measurement_date')
-                                <span class="invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <!-- Weight -->
-                        <div class="form-group">
-                            <input type="number" step="0.01" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror" value="{{ old('weight') }}" placeholder=" ">
-                            <label for="weight" class="floating-label">Peso (kg)</label>
-                            <span class="form-icon"><i class="fas fa-weight"></i></span>
-                            @error('weight')
-                                <span class="invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <!-- Observations -->
-                        <div class="form-group">
-                            <textarea name="observations" id="observations" class="form-control @error('observations') is-invalid @enderror" placeholder=" ">{{ old('observations') }}</textarea>
-                            <label for="observations" class="floating-label">Observaciones</label>
-                            <span class="form-icon"><i class="fas fa-sticky-note"></i></span>
-                            @error('observations')
-                                <span class="invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="text-center mt-4">
+                        <div class="card-footer d-flex justify-content-end">
+                            <a href="{{ route('sipork.admin.sipork.seguimiento_del_crecimiento.index') }}" class="btn btn-secondary mr-2">Cancelar</a>
                             <button type="submit" class="btn btn-primary">Guardar</button>
-                            <a href="" class="btn btn-secondary ml-2">Cancelar</a>
                         </div>
                     </form>
                 </div>

@@ -22,7 +22,7 @@ class PigController extends Controller
 
     public function indexlider()
     {
-        $pigs = pig::all(); // Fetch all pigs from the database
+        $pigs = pig::paginate(10); // Fetch all pigs from the database
         return view('sipork::liderDeUnidad.gestion_de_cerdos.index', ['pigs' => $pigs]);
     }
 
@@ -186,6 +186,13 @@ class PigController extends Controller
 {
     $pigs = \Modules\SIPORK\Entities\Pig::all(); // Ajusta el namespace si es necesario
     $pdf = Pdf::loadView('sipork::admin.gestion_de_cerdos.pdf', compact('pigs'));
+    return $pdf->download('lista_cerdos.pdf');
+}
+
+    public function exportPdflider()
+{
+    $pigs = \Modules\SIPORK\Entities\Pig::all(); // Ajusta el namespace si es necesario
+    $pdf = Pdf::loadView('sipork::liderDeUnidad.gestion_de_cerdos.pdf', compact('pigs'));
     return $pdf->download('lista_cerdos.pdf');
 }
 }

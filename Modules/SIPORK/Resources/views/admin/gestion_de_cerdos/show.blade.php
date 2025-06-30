@@ -39,18 +39,6 @@
                     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                         <div class="d-flex justify-content-between align-items-center w-100">
                             <h3 class="card-title text-center w-100"><i class="fas fa-info-circle"></i> Información del Cerdo</h3>
-                            <div class="card-tools ml-auto d-flex">
-                                <a href="{{ route('sipork.admin.sipork.gestion_de_cerdos.edit', $pig->id_pig) }}" class="btn btn-warning btn-sm mr-2">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <form action="{{ route('sipork.admin.sipork.gestion_de_cerdos.destroy', $pig->id_pig) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete();">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </form>
-                            </div>
                         </div>
                     </div>
                     <div class="card-body">

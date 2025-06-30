@@ -19,7 +19,7 @@ class FeedingController extends Controller
      */
     public function index()
     {
-        $feedings = Feeding::with(['pig', 'lot', 'diet', 'cost'])->get();
+        $feedings = Feeding::with(['pig', 'lot', 'diet', 'cost'])->paginate(10);
         return view('sipork::admin.alimentacion.index', compact('feedings'));
     }
 

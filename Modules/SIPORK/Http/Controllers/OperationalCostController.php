@@ -15,7 +15,7 @@ class OperationalCostController extends Controller
      */
     public function index()
     {
-        $operationalCosts = OperationalCost::all();
+        $operationalCosts = OperationalCost::paginate(10);
         return view('sipork::admin.costos_operativos.index', compact('operationalCosts'));
     }
     public function indexlider()

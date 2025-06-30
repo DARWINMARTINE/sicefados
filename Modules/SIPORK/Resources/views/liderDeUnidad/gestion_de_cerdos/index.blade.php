@@ -1,22 +1,7 @@
 @extends('sipork::layouts.masterLiderDeUnidad')
 
 @section('content')
-<div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1 class="m-0 text-center">Pigs List</h1> <!-- Centrado del título -->
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="">Home</a></li>
-                    <li class="breadcrumb-item active">Pigs</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</div>
-
+<br><br><br>
 <section class="content">
     <div class="container-fluid">
         <div class="row justify-content-center"> <!-- Centrado del contenido -->
@@ -25,6 +10,9 @@
                     <div class="card-header bg-primary text-white d-flex justify-content-center align-items-center">
                         <h3 class="card-title mb-0 text-center flex-grow-1">Todos los Cerdos</h3>
                         <a href="{{ route('sipork.liderDeUnidad.sipork.gestion_de_cerdos.create') }}" class="btn btn-success btn-sm ml-auto" style="transition: all 0.3s ease; color: white;">Agregar Nuevo Cerdo</a>
+                        <a href="{{ route('sipork.liderDeUnidad.sipork.gestion_de_cerdos.pdf') }}" class="btn btn-danger btn-sm ml-2" target="_blank" style="transition: all 0.3s ease; color: white;">
+                            <i class="fas fa-file-pdf"></i> Exportar PDF
+                        </a>
                     </div>
                     <div class="card-body"> <!-- Añadido scroll horizontal -->
                         @if(session('success'))
@@ -126,7 +114,10 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
+                            {{-- Agrega los enlaces de paginación aquí --}}
+                            <div class="d-flex justify-content-center mt-4">
+                                {!! $pigs->links('pagination::bootstrap-4') !!}
+                            </div>
                         @endif
                     </div>
                 </div>

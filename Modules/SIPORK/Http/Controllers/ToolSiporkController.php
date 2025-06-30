@@ -17,7 +17,7 @@ class ToolSiporkController extends Controller
 
     public function index()
     {
-        $tools = ToolSipork::with('warehouse')->get();
+        $tools = ToolSipork::with('warehouse')->paginate(10);
         return view('sipork::admin.herramientas.index', compact('tools'));
     }
 

@@ -13,7 +13,7 @@ class EnvironmentalConditionController extends Controller
 {
     public function index()
     {
-        $conditions = EnvironmentalCondition::with('lot')->get();
+        $conditions = EnvironmentalCondition::with('lot')->paginate(10);
         return view('sipork::admin.condiciones_ambientales.index', compact('conditions'));
     }
 

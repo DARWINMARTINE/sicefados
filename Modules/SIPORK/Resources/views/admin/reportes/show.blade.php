@@ -2,30 +2,90 @@
 
 @section('title', 'Report Details')
 
-@section('content_header')
-    <h1>Report Details</h1>
-@stop
-
 @section('content')
 <br><br><br>
-    <div class="card">
-        <div class="card-body">
-            <p><strong>ID:</strong> {{ $report->id_report }}</p>
-            <p><strong>Report Type:</strong> {{ $report->report_type }}</p>
-            <p><strong>Report Date:</strong> {{ $report->report_date }}</p>
-            <p><strong>Description:</strong> {{ $report->description ?? 'N/A' }}</p>
-            <p><strong>Lot:</strong> {{ $report->lot ? $report->lot->lot_name : 'N/A' }}</p>
-            <p><strong>Created At:</strong> {{ $report->created_at }}</p>
-            <p><strong>Updated At:</strong> {{ $report->updated_at }}</p>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-primary"><i class="fas fa-file-alt"></i> Detalles del Reporte #{{ $report->id_report }}</h1>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb float-sm-right bg-white shadow-sm p-3 rounded">
+                        <li class="breadcrumb-item">
+                            <a href="" class="text-primary font-weight-bold">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('sipork.admin.sipork.reportes.index') }}" class="text-primary font-weight-bold">
+                                <i class="fas fa-file-alt"></i> Reportes
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active font-weight-bold text-secondary" aria-current="page">
+                            <i class="fas fa-info-circle"></i> Detalles del Reporte
+                        </li>
+                    </ol>
+                </nav>
+            </div>
         </div>
     </div>
-    <a href="{{ route('sipork.admin.sipork.reportes.index') }}" class="btn btn-secondary">Back</a>
-@stop
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow-lg">
+                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <h3 class="card-title text-center w-100"><i class="fas fa-info-circle"></i> Información del Reporte</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-4 font-weight-bold text-secondary">ID</dt>
+                            <dd class="col-sm-8">{{ $report->id_report }}</dd>
+                            <dt class="col-sm-4 font-weight-bold text-secondary">Tipo de Reporte</dt>
+                            <dd class="col-sm-8">{{ $report->report_type }}</dd>
+                            <dt class="col-sm-4 font-weight-bold text-secondary">Fecha del Reporte</dt>
+                            <dd class="col-sm-8">{{ $report->report_date }}</dd>
+                            <dt class="col-sm-4 font-weight-bold text-secondary">Descripción</dt>
+                            <dd class="col-sm-8">{{ $report->description ?? 'N/A' }}</dd>
+                            <dt class="col-sm-4 font-weight-bold text-secondary">Lote</dt>
+                            <dd class="col-sm-8">{{ $report->lot ? $report->lot->lot_name : 'N/A' }}</dd>
+                            <dt class="col-sm-4 font-weight-bold text-secondary">Creado en</dt>
+                            <dd class="col-sm-8">{{ $report->created_at }}</dd>
+                            <dt class="col-sm-4 font-weight-bold text-secondary">Actualizado en</dt>
+                            <dd class="col-sm-8">{{ $report->updated_at }}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .card {
+        border-radius: 15px;
+    }
+    .breadcrumb {
+        background-color: #f8f9fa;
+    }
+    .breadcrumb-item a {
+        text-decoration: none;
+    }
+</style>
+@endsection
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')
-    <script> console.log('Show Report Page Loaded'); </script>
+    <script>
+        console.log('Show Report Page Loaded');
+    </script>
 @stop

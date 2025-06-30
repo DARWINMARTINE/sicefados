@@ -41,9 +41,15 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="application/json" id="labels-data">
+    {!! json_encode($labels ?? []) !!}
+</script>
+<script type="application/json" id="weights-data">
+    {!! json_encode($weights ?? []) !!}
+</script>
 <script>
-    const labels = @json($labels);
-    const data = @json($weights);
+    const labels = JSON.parse(document.getElementById('labels-data').textContent);
+    const data = JSON.parse(document.getElementById('weights-data').textContent);
     new Chart(document.getElementById('growthChart'), {
         type: 'line',
         data: {
