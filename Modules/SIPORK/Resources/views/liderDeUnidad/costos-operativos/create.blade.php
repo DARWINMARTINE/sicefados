@@ -1,86 +1,88 @@
 @extends('sipork::layouts.masterLiderDeUnidad')
 
-@section('content_header')
+@section('title', 'Agregar Costo Operativo')
 
-    <h1 class="text-dark font-weight-bold">Create Operational Cost</h1>
+@section('content_header')
+    <h1 class="text-center">Agregar Costo Operativo</h1>
 @stop
 
 @section('content')
 <br><br><br>
-    @if ($errors->any())
-        <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
-            <ul class="m-0">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-                <div class="card form-card animate__animated animate__fadeIn">
-                    <div class="card-header bg-gradient-primary text-white text-center">
-                        <h3 class="card-title m-0">Create Operational Cost</h3>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('sipork.liderDeUnidad.sipork.costos-operativos.store') }}">
-                            @csrf
+@if ($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+        <ul class="m-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 
-                            <!-- Cost Type -->
-                            <div class="form-group">
-                                <input type="text" name="cost_type" id="cost_type" class="form-control @error('cost_type') is-invalid @enderror" value="{{ old('cost_type') }}" required placeholder=" ">
-                                <label for="cost_type" class="floating-label">Cost Type <span class="text-danger">*</span></label>
-                                <span class="form-icon"><i class="fas fa-tags"></i></span>
-                                @error('cost_type')
-                                    <span class="invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card form-card animate__animated animate__fadeIn">
+                <div class="card-header bg-gradient-primary text-white text-center">
+                    <h3 class="card-title m-0">Formulario de Costo Operativo</h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('sipork.liderDeUnidad.sipork.costos-operativos.store') }}">
+                        @csrf
 
-                            <!-- Amount -->
-                            <div class="form-group">
-                                <input type="number" step="0.01" name="amount" id="amount" class="form-control @error('amount') is-invalid @enderror" value="{{ old('amount') }}" required placeholder=" ">
-                                <label for="amount" class="floating-label">Amount <span class="text-danger">*</span></label>
-                                <span class="form-icon"><i class="fas fa-dollar-sign"></i></span>
-                                @error('amount')
-                                    <span class="invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
+                        <!-- Tipo de Costo -->
+                        <div class="form-group">
+                            <input type="text" name="cost_type" id="cost_type" class="form-control @error('cost_type') is-invalid @enderror" value="{{ old('cost_type') }}" required placeholder=" ">
+                            <label for="cost_type" class="floating-label">Tipo de Costo <span class="text-danger">*</span></label>
+                            <span class="form-icon"><i class="fas fa-tags"></i></span>
+                            @error('cost_type')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
 
-                            <!-- Cost Date -->
-                            <div class="form-group">
-                                <input type="date" name="cost_date" id="cost_date" class="form-control @error('cost_date') is-invalid @enderror" value="{{ old('cost_date') }}" required placeholder=" ">
-                                <label for="cost_date" class="floating-label">Cost Date <span class="text-danger">*</span></label>
-                                <span class="form-icon"><i class="fas fa-calendar-alt"></i></span>
-                                @error('cost_date')
-                                    <span class="invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
+                        <!-- Monto -->
+                        <div class="form-group">
+                            <input type="number" step="0.01" name="amount" id="amount" class="form-control @error('amount') is-invalid @enderror" value="{{ old('amount') }}" required placeholder=" ">
+                            <label for="amount" class="floating-label">Monto <span class="text-danger">*</span></label>
+                            <span class="form-icon"><i class="fas fa-dollar-sign"></i></span>
+                            @error('amount')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
 
-                            <!-- Description -->
-                            <div class="form-group">
-                                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" placeholder=" ">{{ old('description') }}</textarea>
-                                <label for="description" class="floating-label">Description</label>
-                                <span class="form-icon"><i class="fas fa-sticky-note"></i></span>
-                                @error('description')
-                                    <span class="invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
+                        <!-- Fecha del Costo -->
+                        <div class="form-group">
+                            <input type="date" name="cost_date" id="cost_date" class="form-control @error('cost_date') is-invalid @enderror" value="{{ old('cost_date') }}" required placeholder=" ">
+                            <label for="cost_date" class="floating-label">Fecha del Costo <span class="text-danger">*</span></label>
+                            <span class="form-icon"><i class="fas fa-calendar-alt"></i></span>
+                            @error('cost_date')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
 
-                            <div class="text-center mt-4">
-                                <button type="submit" class="btn btn-primary">Create</button>
-                                <a href="{{ route('sipork.liderDeUnidad.sipork.costos-operativos.index') }}" class="btn btn-secondary ml-2">Cancel</a>
-                            </div>
-                        </form>
-                    </div>
+                        <!-- Descripción -->
+                        <div class="form-group">
+                            <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" placeholder=" ">{{ old('description') }}</textarea>
+                            <label for="description" class="floating-label">Descripción</label>
+                            <span class="form-icon"><i class="fas fa-sticky-note"></i></span>
+                            @error('description')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <a href="{{ route('sipork.liderDeUnidad.sipork.costos-operativos.index') }}" class="btn btn-secondary ml-2">Cancelar</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @stop
 
 @section('css')
@@ -89,17 +91,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
         .form-card {
-            background: #fefae0; /* Light beige, farm-inspired */
+            background: #fefae0;
             border-radius: 15px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            border: 1px solid #588157; /* Green border for farm theme */
+            border: 1px solid #588157;
             transition: transform 0.3s ease;
         }
         .form-card:hover {
             transform: translateY(-5px);
         }
         .bg-gradient-primary {
-            background: linear-gradient(90deg, #3a5a40, #588157); /* Earthy green gradient */
+            background: linear-gradient(90deg, #3a5a40, #588157);
         }
         .form-group {
             position: relative;
@@ -188,7 +190,7 @@
 @stop
 
 @section('js')
-    <script>
-        console.log('Create Operational Cost Page Loaded');
-    </script>
+<script>
+    console.log('Create Operational Cost Page Loaded');
+</script>
 @stop
