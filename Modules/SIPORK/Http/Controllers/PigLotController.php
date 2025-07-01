@@ -32,7 +32,7 @@ class PigLotController extends Controller
             ->join('pigs', 'pigs_lots.pig_id', '=', 'pigs.id_pig')
             ->join('lots', 'pigs_lots.lot_id', '=', 'lots.id_lot')
             ->select('pigs_lots.*', 'pigs.breed as pig_breed', 'lots.lot_name')
-            ->get();
+            ->paginate(10);
         return view('sipork::aprendiz.ASIGNAR_CERDOS.index', compact('pigLots'));
     }
 

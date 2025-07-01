@@ -2,56 +2,150 @@
 
 @section('title', 'Warehouses')
 
-@section('content_header')
-    <h1>Warehouses</h1>
-@stop
-
 @section('content')
-    <br><br><br>
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
+<br><br><br>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-11 offset-md-0" style="margin-left: 5%;">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white d-flex justify-content-center align-items-center">
+                        <h3 class="card-title mb-0 text-center flex-grow-1">Todos los Almacenes</h3>
+                        <a href="{{ route('sipork.aprendiz.sipork.BODEGAS.create') }}" class="btn btn-success btn-sm ml-auto" style="transition: all 0.3s ease; color: white;">Agregar Nuevo Almacén</a>
+                    </div>
+                    <div class="card-body">
+                        @if(session('success'))
+                        <script>
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Éxito',
+                                text: "{{ session('success') }}",
+                                timer: 3000,
+                                showConfirmButton: false
+                            });
+                        </script>
+                        @endif
+                        @if($warehouses->isEmpty())
+                        <div class="alert alert-danger text-center">No hay almacenes registrados aún.</div>
+                        @else
+                        <div class="table-responsive" style="margin-left: 10px;">
+                            <table class="table table-bordered table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th class="text-center">ID</th>
+                                        <th>Nombre del Almacén</th>
+                                        <th>Ubicación</th>
+                                        <th>Capacidad</th>
+                                        <th class="text-center">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($warehouses as $warehouse)
+                                    <tr>
+                                        <td class="text-center">{{ $warehouse->id_warehouse }}</td>
+                                        <td>{{ $warehouse->warehouse_name }}</td>
+                                        <td>{{ $warehouse->location }}</td>
+                                        <td>{{ number_format($warehouse->capacity, 2) }}</td>
+                                        <td class="text-center">
+                                            <a href="{{ route('sipork.aprendiz.sipork.BODEGAS.show', $warehouse->id_warehouse) }}" class="text-info"
+                                                style="font-size: 1.5rem; transition: transform 0.3s ease, color 0.3s ease; color: #17a2b8;"
+                                                onmouseover="this.style.transform='scale(1.2)'; this.style.color='darkcyan';"
+                                                onmouseout="this.style.transform='scale(1)'; this.style.color='#17a2b8';">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="{{ route('sipork.aprendiz.sipork.BODEGAS.edit', $warehouse->id_warehouse) }}" class="text-warning"
+                                                style="font-size: 1.5rem; transition: transform 0.3s ease, color 0.3s ease; color: #ffc107;"
+                                                onmouseover="this.style.transform='scale(1.2)'; this.style.color='orange';"
+                                                onmouseout="this.style.transform='scale(1)'; this.style.color='#ffc107';">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <form action="{{ route('sipork.aprendiz.sipork.BODEGAS.destroy', $warehouse->id_warehouse) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete(this);">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" style="border: none; background: none; font-size: 1.5rem; transition: transform 0.3s ease, color 0.3s ease; color: red;"
+                                                    onmouseover="this.style.transform='scale(1.2)'; this.style.color='darkred';"
+                                                    onmouseout="this.style.transform='scale(1)'; this.style.color='red';"
+                                                    onclick="confirmDelete(this.form)">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <div class="d-flex justify-content-center mt-4">
+                                {!! $warehouses->links('pagination::bootstrap-4') !!}
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
         </div>
-    @endif
+    </div>
+</section>
 
-    <a href="{{ route('sipork.aprendiz.sipork.BODEGAS.create') }}" class="btn btn-primary mb-3">Agregar nuevo almacén</a>
+<style>
+    .swal-image-custom {
+        border-radius: 10px;
+    }
+    .table-responsive {
+        overflow-x: auto;
+    }
+    .table {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .table thead th {
+        background-color: #343a40;
+        border-color: #454d55;
+        color: white;
+        font-weight: 600;
+        text-align: center;
+    }
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+    .alert-success {
+        border-left: 4px solid #28a745;
+        border-radius: 8px;
+    }
+</style>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre del almacén</th>
-                <th>Ubicación</th>
-                <th>Capacidad</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($warehouses as $warehouse)
-                <tr>
-                    <td>{{ $warehouse->id_warehouse }}</td>
-                    <td>{{ $warehouse->warehouse_name }}</td>
-                    <td>{{ $warehouse->location }}</td>
-                    <td>{{ $warehouse->capacity }}</td>
-                    <td>
-                        <a href="{{ route('sipork.aprendiz.sipork.BODEGAS.show', $warehouse->id_warehouse) }}" class="btn btn-info btn-sm">View</a>
-                        <a href="{{ route('sipork.aprendiz.sipork.BODEGAS.edit', $warehouse->id_warehouse) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('sipork.aprendiz.sipork.BODEGAS.destroy', $warehouse->id_warehouse) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-@stop
+<script>
+    function confirmDelete(form) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Esta acción no se puede deshacer.",
+            imageUrl: "{{ asset('images/advertencia.jpg') }}",
+            imageWidth: 160,
+            imageHeight: 150,
+            customClass: {
+                image: 'swal-image-custom'
+            },
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+        return false;
+    }
+</script>
+@endsection
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 @stop
 
 @section('js')
-    <script> console.log('Warehouses Page Loaded'); </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        console.log('Warehouses Page Loaded');
+    </script>
 @stop

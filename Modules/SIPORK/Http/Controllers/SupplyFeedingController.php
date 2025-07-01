@@ -17,13 +17,13 @@ class SupplyFeedingController extends Controller
      */
     public function index()
     {
-        $suppliesFeeding = SupplyFeeding::with(['feeding', 'supply'])->get();
+        $suppliesFeeding = SupplyFeeding::with(['feeding', 'supply'])->paginate(10);
         return view('sipork::admin.insumos_alimenticios.index', compact('suppliesFeeding'));
     }
 
     public function indexaprendiz()
     {
-        $suppliesFeeding = SupplyFeeding::with(['feeding', 'supply'])->get();
+        $suppliesFeeding = SupplyFeeding::with(['feeding', 'supply'])->paginate(10);
         return view('sipork::aprendiz.INSUMOS_ALIMENTICIOS.index', compact('suppliesFeeding'));
     }
 

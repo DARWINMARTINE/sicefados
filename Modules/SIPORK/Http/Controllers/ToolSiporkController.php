@@ -23,7 +23,7 @@ class ToolSiporkController extends Controller
 
     public function indexaprendiz()
     {
-        $tools = ToolSipork::with('warehouse')->get();
+        $tools = ToolSipork::with('warehouse')->paginate(10);
         return view('sipork::aprendiz.HERRAMIENTAS.index', compact('tools'));
     }
 

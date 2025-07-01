@@ -22,7 +22,7 @@ class SupplySiporkController extends Controller
 
     public function indexaprendiz()
     {
-        $supplies = SupplySipork::with('warehouse')->get();
+        $supplies = SupplySipork::with('warehouse')->paginate(10);
         return view('sipork::aprendiz.SUMINISTROS.index', compact('supplies'));
     }
 

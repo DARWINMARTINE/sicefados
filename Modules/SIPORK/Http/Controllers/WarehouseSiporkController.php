@@ -15,13 +15,13 @@ class WarehouseSiporkController extends Controller
      */
     public function index()
     {
-        $warehouses = WarehouseSipork::all();
+        $warehouses = WarehouseSipork::paginate(10);
         return view('sipork::admin.bodegas.index', compact('warehouses'));
     }
 
     public function indexaprendiz()
     {
-        $warehouses = WarehouseSipork::all();
+        $warehouses = WarehouseSipork::paginate(10);
         return view('sipork::aprendiz.BODEGAS.index', compact('warehouses'));
     }
 

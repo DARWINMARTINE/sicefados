@@ -24,7 +24,7 @@ class DietController extends Controller
 
     public function indexaprendiz()
     {
-        $diets = Diet::all();
+        $diets = Diet::paginate(10);
         return view('sipork::aprendiz.DIETAS.index', compact('diets'));
     }
 

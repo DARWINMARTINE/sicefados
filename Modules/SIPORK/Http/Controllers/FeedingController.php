@@ -25,7 +25,7 @@ class FeedingController extends Controller
 
     public function indexaprendiz()
     {
-        $feedings = Feeding::with(['pig', 'lot', 'diet', 'cost'])->get();
+        $feedings = Feeding::with(['pig', 'lot', 'diet', 'cost'])->paginate(10);
         return view('sipork::aprendiz.ALIMENTACION.index', compact('feedings'));
     }
 
